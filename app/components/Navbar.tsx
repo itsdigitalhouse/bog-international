@@ -28,7 +28,6 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
-  // Dynamic Up/Down Price Fluctuation Interval with Visual Highlights
   useEffect(() => {
     const interval = setInterval(() => {
       setPrices((prevPrices) =>
@@ -51,7 +50,6 @@ export default function Navbar() {
         })
       );
 
-      // Flash Effect Reset after 1 second
       setTimeout(() => {
         setPrices((latestPrices) =>
           latestPrices.map((p) => ({ ...p, status: "neutral" }))
@@ -62,7 +60,6 @@ export default function Navbar() {
     return () => clearInterval(interval);
   }, []);
 
-  // Scroll Event Listener
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -106,8 +103,8 @@ export default function Navbar() {
       <div className="bg-transparent text-[#F3F3F3] border-b border-[#E5CC64]/15 py-2">
         <div className="max-w-[1536px] mx-auto px-4 md:px-6 flex items-center justify-between min-h-[70px] md:min-h-[90px]">
           
-          {/* DESKTOP LEFT MENU */}
-          <nav className="hidden xl:flex items-center space-x-3 2xl:space-x-5 text-[12px] 2xl:text-[13px] font-bold uppercase tracking-wide font-[family-name:var(--font-cinzel)] w-1/2 justify-end pr-6">
+          {/* DESKTOP LEFT MENU - UPDATED FONT SIZE */}
+          <nav className="hidden xl:flex items-center space-x-2.5 2xl:space-x-4 text-[10px] 2xl:text-[11px] font-bold uppercase tracking-wider font-[family-name:var(--font-cinzel)] w-1/2 justify-end pr-4">
             <Link 
               href="/" 
               className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${
@@ -139,28 +136,28 @@ export default function Navbar() {
               onMouseLeave={() => setProductDropdown(false)}
             >
               <button className={`flex items-center gap-1 transition focus:outline-none uppercase whitespace-nowrap py-1 ${
-                isActive('/gold') || isActive('/copper') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'
+                isActive('/products/gold') || isActive('/products/copper') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'
               }`}>
-                Our Products <span className="text-[9px] text-[#E5CC64]">▾</span>
+                Our Products <span className="text-[8px] text-[#E5CC64]">▾</span>
               </button>
               <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ease-in-out ${
-                isActive('/gold') || isActive('/copper') ? 'w-full' : 'w-0 group-hover:w-full'
+                isActive('/products/gold') || isActive('/products/copper') ? 'w-full' : 'w-0 group-hover:w-full'
               }`} />
               
               {productDropdown && (
-                <div className="absolute top-full left-0 w-60 bg-[#153B16]/95 backdrop-blur-md border border-[#E5CC64]/30 rounded-none py-2 text-xs tracking-wider font-sans normal-case shadow-2xl z-50">
+                <div className="absolute top-full left-0 w-56 bg-[#153B16]/95 backdrop-blur-md border border-[#E5CC64]/30 rounded-none py-2 text-[11px] tracking-wider font-sans normal-case shadow-2xl z-50">
                   <Link 
-                    href="/gold" 
+                    href="/products/gold" 
                     className={`block px-4 py-2 hover:bg-[#E5CC64] hover:text-[#153B16] transition-colors duration-150 capitalize font-medium ${
-                      isActive('/gold') ? 'text-[#E5CC64]' : 'text-gray-200'
+                      isActive('/products/gold') ? 'text-[#E5CC64]' : 'text-gray-200'
                     }`}
                   >
                     Gold Trading & Export
                   </Link>
                   <Link 
-                    href="/copper" 
+                    href="/products/copper" 
                     className={`block px-4 py-2 hover:bg-[#E5CC64] hover:text-[#153B16] transition-colors duration-150 capitalize font-medium ${
-                      isActive('/copper') ? 'text-[#E5CC64]' : 'text-gray-200'
+                      isActive('/products/copper') ? 'text-[#E5CC64]' : 'text-gray-200'
                     }`}
                   >
                     Copper & Cathodes
@@ -187,7 +184,7 @@ export default function Navbar() {
                 isActive('/international-trading') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'
               }`}
             >
-              Initial Trading
+              International Trading
               <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ease-in-out ${
                 isActive('/international-trading') ? 'w-full' : 'w-0 group-hover:w-full'
               }`} />
@@ -208,8 +205,8 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* DESKTOP RIGHT MENU */}
-          <nav className="hidden xl:flex items-center space-x-3 2xl:space-x-5 text-[12px] 2xl:text-[13px] font-bold uppercase tracking-wide font-[family-name:var(--font-cinzel)] w-1/2 justify-start pl-6">
+          {/* DESKTOP RIGHT MENU - UPDATED FONT SIZE */}
+          <nav className="hidden xl:flex items-center space-x-2.5 2xl:space-x-4 text-[10px] 2xl:text-[11px] font-bold uppercase tracking-wider font-[family-name:var(--font-cinzel)] w-1/2 justify-start pl-4">
             <Link 
               href="/export-logistics" 
               className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${
@@ -289,18 +286,18 @@ export default function Navbar() {
 
         {/* MOBILE DRAWER MENU */}
         {isOpen && (
-          <div className="xl:hidden bg-[#153B16]/95 backdrop-blur-md border-t border-[#E5CC64]/20 px-6 py-6 space-y-4 text-sm font-bold font-[family-name:var(--font-cinzel)] uppercase tracking-wider">
+          <div className="xl:hidden bg-[#153B16]/95 backdrop-blur-md border-t border-[#E5CC64]/20 px-6 py-6 space-y-4 text-xs font-bold font-[family-name:var(--font-cinzel)] uppercase tracking-wider">
             <Link href="/" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>Home</Link>
             <Link href="/about" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/about') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>About Us</Link>
             
             <div className="pl-4 border-l border-[#E5CC64]/40 my-3 space-y-2 font-sans normal-case">
-              <span className="text-xs text-[#E5CC64] font-bold tracking-widest uppercase block font-[family-name:var(--font-cinzel)]">Our Products</span>
-              <Link href="/gold" onClick={() => setIsOpen(false)} className={`block py-1 text-xs ${isActive('/gold') ? 'text-[#E5CC64]' : 'text-gray-300 hover:text-[#E5CC64]'}`}>Gold Trading & Export</Link>
-              <Link href="/copper" onClick={() => setIsOpen(false)} className={`block py-1 text-xs ${isActive('/copper') ? 'text-[#E5CC64]' : 'text-gray-300 hover:text-[#E5CC64]'}`}>Copper & Copper Cathodes</Link>
+              <span className="text-[10px] text-[#E5CC64] font-bold tracking-widest uppercase block font-[family-name:var(--font-cinzel)]">Our Products</span>
+              <Link href="/products/gold" onClick={() => setIsOpen(false)} className={`block py-1 text-xs ${isActive('/products/gold') ? 'text-[#E5CC64]' : 'text-gray-300 hover:text-[#E5CC64]'}`}>Gold Trading & Export</Link>
+              <Link href="/products/copper" onClick={() => setIsOpen(false)} className={`block py-1 text-xs ${isActive('/products/copper') ? 'text-[#E5CC64]' : 'text-gray-300 hover:text-[#E5CC64]'}`}>Copper & Copper Cathodes</Link>
             </div>
 
             <Link href="/mining" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/mining') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>Mining & Development</Link>
-            <Link href="/international-trading" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/international-trading') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>Initial Trading</Link>
+            <Link href="/international-trading" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/international-trading') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>International Trading</Link>
             <Link href="/export-logistics" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/export-logistics') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>Export & Logistics</Link>
             <Link href="/quality-assay" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/quality-assay') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>Quality & Assay</Link>
             <Link href="/compliance" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/compliance') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>Compliance</Link>
@@ -317,8 +314,6 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-[1536px] mx-auto flex items-center justify-between gap-2 sm:gap-4">
-          
-          {/* Live Badge */}
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 bg-[#E5CC64]/15 px-1.5 sm:px-2.5 py-0.5 rounded border border-[#E5CC64]/40 shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-[#E5CC64] animate-pulse"></span>
             <span className="text-[8px] sm:text-[9px] font-bold text-[#E5CC64] tracking-widest font-sans uppercase whitespace-nowrap">
@@ -326,10 +321,8 @@ export default function Navbar() {
             </span>
           </div>
 
-          {/* Price Container with Dynamic Canvas Responsiveness & Flash Indicators */}
           <div className="flex items-center justify-start md:justify-center gap-4 sm:gap-6 md:gap-8 overflow-x-auto no-scrollbar whitespace-nowrap scroll-smooth w-full px-1">
             {prices.map((item) => {
-              // Flashing background highlight logic
               const flashBg = 
                 item.status === "up" 
                   ? "bg-emerald-500/20 border-emerald-400/40" 
@@ -365,7 +358,6 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Market Feed Tag */}
           <div className="hidden xl:flex items-center text-[9px] text-gray-300 shrink-0 font-sans tracking-widest uppercase">
             LBMA DIRECT FEEDS
           </div>

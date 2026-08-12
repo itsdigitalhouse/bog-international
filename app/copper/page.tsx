@@ -1,5 +1,3 @@
-import Navbar from "@/app/components/Navbar";
-import Footer from "@/app/components/Footer";
 import Link from "next/link";
 
 export default function CopperPage() {
@@ -14,7 +12,6 @@ export default function CopperPage() {
 
   return (
     <main className="min-h-screen bg-[#F3F3F3] text-[#153B16]">
-      <Navbar />
 
       {/* Hero Section */}
       <section className="bg-[#153B16] text-[#F3F3F3] py-20 px-6 md:px-12 lg:px-20 border-b border-[#E5CC64]/20">
@@ -83,7 +80,6 @@ export default function CopperPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }

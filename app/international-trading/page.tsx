@@ -1,11 +1,8 @@
-import Navbar from "@/app/components/Navbar";
-import Footer from "@/app/components/Footer";
 import Link from "next/link";
 
 export default function InternationalTradingPage() {
   return (
     <main className="min-h-screen bg-[#F3F3F3] text-[#153B16]">
-      <Navbar />
 
       <section className="bg-[#153B16] text-[#F3F3F3] py-20 px-6 md:px-12 lg:px-20 border-b border-[#E5CC64]/20">
         <div className="max-w-7xl mx-auto">
@@ -54,7 +51,6 @@ export default function InternationalTradingPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }

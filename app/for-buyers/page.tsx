@@ -1,11 +1,8 @@
-import Navbar from "@/app/components/Navbar";
-import Footer from "@/app/components/Footer";
 import RequestOfferForm from "@/app/components/RequestOfferForm";
 
 export default function ForBuyersPage() {
   return (
     <main className="min-h-screen bg-[#F3F3F3] text-[#153B16]">
-      <Navbar />
 
       <section className="bg-[#153B16] text-[#F3F3F3] py-20 px-6 md:px-12 lg:px-20 border-b border-[#E5CC64]/20 text-center">
         <div className="max-w-4xl mx-auto">
@@ -25,7 +22,6 @@ export default function ForBuyersPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }
