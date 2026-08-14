@@ -1,6 +1,7 @@
 import Hero from "./components/Hero";
 import WhoWeAre from "./components/WhoWeAre";
 import ProductCards from "./components/ProductCards";
+import OurGlobalOperations from "./components/OurGlobalOperations";
 import QualityAssay from "./components/QualityAssay";
 import Compliance from "./components/Compliance";
 import ForBuyers from "./components/ForBuyers";
@@ -14,6 +15,7 @@ export default function Home() {
         <Hero />
         <WhoWeAre />
         <ProductCards />
+        <OurGlobalOperations />
         <QualityAssay />
         <Compliance />
         <ForBuyers />

@@ -1,114 +1,319 @@
 "use client";
 
+const operatingPrinciples = [
+  {
+    number: "01",
+    title: "Traceability & Integrity",
+    description:
+      "All commodities carry verifiable provenance documentation.",
+  },
+  {
+    number: "02",
+    title: "Assay Accuracy",
+    description:
+      "Purity certifications are conducted through accredited laboratory processes.",
+  },
+  {
+    number: "03",
+    title: "Strict Compliance",
+    description:
+      "Mandatory KYC/AML verification is applied prior to contract execution.",
+  },
+];
+
+const operatingCapabilities = [
+  {
+    number: "01",
+    title: "Direct Mine & Concession Access",
+    description:
+      "Direct engagement with licensed mining zones and verified sourcing channels.",
+  },
+  {
+    number: "02",
+    title: "End-to-End Export Handling",
+    description:
+      "Coordination of customs documentation, transit security and export logistics.",
+  },
+];
+
 export default function ExecutiveOverview() {
   return (
-    <section className="relative py-20 lg:py-24 text-[#153B16] overflow-hidden bg-[#FFFFFF]">
-      {/* Background Image with Light Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=2000&auto=format&fit=crop"
-          alt="Mining and Gold Operations Background"
-          className="w-full h-full object-cover opacity-10"
-        />
-        {/* Subtle Gradient to smooth out image edges */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white opacity-80" />
-      </div>
+    <section className="relative w-full overflow-hidden bg-[#F3F3F3] text-[#153B16]">
+      {/* =====================================================
+          TOP ACCENT
+      ====================================================== */}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
-          {/* Left Column: Commercial Content */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="inline-block">
-              <span className="text-[#153B16] text-[11px] font-bold uppercase tracking-[0.25em] font-mono bg-[#E5CC64]/20 border border-[#E5CC64]/60 px-3 py-1">
-                COMMERCIAL POSITIONING
+      <div className="h-px w-full bg-[#E5CC64]" />
+
+      {/* =====================================================
+          MAIN CONTAINER
+      ====================================================== */}
+
+      <div className="w-full px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28 xl:px-16">
+
+        {/* =====================================================
+            INTRODUCTION
+        ====================================================== */}
+
+        <div className="grid gap-10 lg:grid-cols-[1fr_0.75fr] lg:items-end">
+
+          {/* LEFT */}
+
+          <div>
+
+            <div className="mb-5 flex items-center gap-3">
+
+              <span className="h-px w-8 bg-[#E5CC64]" />
+
+              <span className="text-[8px] font-semibold uppercase tracking-[0.28em] text-[#153B16]/45">
+                Commercial Positioning
               </span>
+
             </div>
 
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-[family-name:var(--font-cinzel)] leading-[1.15] text-[#153B16] uppercase">
-              Structured Commodity Trade & Field Coordination
+
+            <h2 className="max-w-4xl text-[30px] font-semibold leading-[1.08] tracking-[-0.025em] sm:text-[36px] lg:text-[46px]">
+
+              <span className="text-[#153B16]">
+                Structured Commodity Trade
+              </span>
+
+              <br />
+
+              <span className="font-normal text-[#E5CC64]">
+                & Field Coordination
+              </span>
+
             </h2>
 
-            <div className="w-16 h-[3px] bg-[#E5CC64]" />
-
-            <p className="text-gray-800 text-xs sm:text-sm md:text-base leading-relaxed font-normal">
-              Bhatia Ocean Gold International was established to address key operational risks in raw mineral sourcing. By eliminating multi-tier brokerage webs, BOG connects verified international buyers directly with direct concessions and government-licensed refining entities.
-            </p>
-
-            <p className="text-gray-800 text-xs sm:text-sm md:text-base leading-relaxed font-normal">
-              Our team coordinates ground inspection, weight and purity assays, legal export licensing, and international shipping protocols (CIF / FOB). Every transaction is structured under standardized international commercial frameworks to ensure total clarity and accountability.
-            </p>
-
-            {/* Sub-cards */}
-            <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-4 bg-white/80 backdrop-blur-sm border-l-4 border-[#153B16] border-y border-r border-gray-200 hover:border-[#E5CC64] transition-colors shadow-sm">
-                <h4 className="font-bold text-[#153B16] uppercase text-xs font-[family-name:var(--font-cinzel)] mb-1">
-                  Direct Mine & Concession Access
-                </h4>
-                <p className="text-[11px] sm:text-xs text-gray-600 leading-normal">
-                  Direct engagement with licensed mining zones across West and Central African mineral belts.
-                </p>
-              </div>
-
-              <div className="p-4 bg-white/80 backdrop-blur-sm border-l-4 border-[#153B16] border-y border-r border-gray-200 hover:border-[#E5CC64] transition-colors shadow-sm">
-                <h4 className="font-bold text-[#153B16] uppercase text-xs font-[family-name:var(--font-cinzel)] mb-1">
-                  End-to-End Export Handling
-                </h4>
-                <p className="text-[11px] sm:text-xs text-gray-600 leading-normal">
-                  Full management of customs documentation, transit security, and vaulting logistics.
-                </p>
-              </div>
-            </div>
           </div>
 
-          {/* Right Column: Principles Box */}
-          <div className="lg:col-span-5 relative">
-            <div className="bg-[#153B16] text-white p-6 sm:p-8 border-2 border-[#E5CC64] shadow-2xl relative z-10">
-              <span className="text-[#E5CC64] text-[10px] font-mono font-bold tracking-[0.2em] block mb-1 uppercase">
-                [ BOG STANDARDS ]
-              </span>
-              <h3 className="text-lg font-bold font-[family-name:var(--font-cinzel)] text-white mb-4 uppercase border-b border-[#E5CC64]/30 pb-3">
-                Operating Principles
-              </h3>
 
-              <ul className="space-y-4 text-xs text-gray-200">
-                <li className="flex items-start gap-3">
-                  <span className="w-5 h-5 rounded-full bg-[#E5CC64] text-[#153B16] font-extrabold text-[10px] flex items-center justify-center shrink-0 mt-0.5">
-                    1
-                  </span>
-                  <div>
-                    <strong className="text-white block font-medium uppercase text-[11px] font-[family-name:var(--font-cinzel)]">Traceability & Integrity</strong>
-                    <span className="text-gray-300 leading-tight block mt-0.5">All commodities carry verifiable provenance documentation.</span>
-                  </div>
-                </li>
+          {/* RIGHT */}
 
-                <li className="flex items-start gap-3">
-                  <span className="w-5 h-5 rounded-full bg-[#E5CC64] text-[#153B16] font-extrabold text-[10px] flex items-center justify-center shrink-0 mt-0.5">
-                    2
-                  </span>
-                  <div>
-                    <strong className="text-white block font-medium uppercase text-[11px] font-[family-name:var(--font-cinzel)]">Assay Accuracy</strong>
-                    <span className="text-gray-300 leading-tight block mt-0.5">Purity certifications conducted by accredited state laboratories.</span>
-                  </div>
-                </li>
+          <div className="lg:pl-8">
 
-                <li className="flex items-start gap-3">
-                  <span className="w-5 h-5 rounded-full bg-[#E5CC64] text-[#153B16] font-extrabold text-[10px] flex items-center justify-center shrink-0 mt-0.5">
-                    3
-                  </span>
-                  <div>
-                    <strong className="text-white block font-medium uppercase text-[11px] font-[family-name:var(--font-cinzel)]">Strict Compliance</strong>
-                    <span className="text-gray-300 leading-tight block mt-0.5">Mandatory KYC/AML verification prior to contract execution.</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
+            <p className="max-w-xl text-sm leading-7 text-[#153B16]/60 sm:text-[15px]">
+              Bhatia Ocean Gold International was established to address key
+              operational risks in raw mineral sourcing. By reducing
+              unnecessary intermediary layers, BOG connects international
+              buyers with verified sourcing and refining channels.
+            </p>
 
-            {/* Background Frame Accent */}
-            <div className="absolute -bottom-3 -right-3 w-full h-full border-2 border-[#E5CC64]/40 -z-0 hidden sm:block" />
           </div>
 
         </div>
+
+
+        {/* =====================================================
+            MAIN CONTENT
+        ====================================================== */}
+
+        <div className="mt-16 grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
+
+          {/* =================================================
+              LEFT — OPERATIONAL APPROACH
+          ================================================== */}
+
+          <div>
+
+            <div className="max-w-3xl">
+
+              <p className="text-sm leading-7 text-[#153B16]/60 sm:text-[15px]">
+                Our team coordinates ground inspection, weight and purity
+                assays, legal export licensing, and international shipping
+                protocols including CIF and FOB structures. Every transaction
+                is organized around defined commercial and documentation
+                requirements to support clarity and accountability.
+              </p>
+
+            </div>
+
+
+            {/* CAPABILITY ROWS */}
+
+            <div className="mt-10 border-t border-[#153B16]/10">
+
+              {operatingCapabilities.map((item) => (
+                <div
+                  key={item.number}
+                  className="group grid gap-5 border-b border-[#153B16]/10 py-6 sm:grid-cols-[60px_0.8fr_1.2fr] sm:items-center"
+                >
+
+                  {/* NUMBER */}
+
+                  <div className="text-[9px] font-semibold tracking-[0.2em] text-[#E5CC64]">
+                    {item.number}
+                  </div>
+
+
+                  {/* TITLE */}
+
+                  <div>
+
+                    <h3 className="text-sm font-semibold uppercase tracking-[0.04em] text-[#153B16]">
+                      {item.title}
+                    </h3>
+
+                  </div>
+
+
+                  {/* DESCRIPTION */}
+
+                  <div>
+
+                    <p className="text-xs leading-6 text-[#153B16]/45">
+                      {item.description}
+                    </p>
+
+                  </div>
+
+                </div>
+              ))}
+
+            </div>
+
+          </div>
+
+
+          {/* =================================================
+              RIGHT — OPERATING PRINCIPLES
+          ================================================== */}
+
+          <div className="relative">
+
+            {/* subtle frame */}
+
+            <div className="absolute -right-2 -top-2 h-full w-full border border-[#E5CC64]/50" />
+
+
+            <div className="relative bg-[#153B16] px-7 py-8 sm:px-9 sm:py-10">
+
+              {/* LABEL */}
+
+              <div className="flex items-center justify-between border-b border-white/10 pb-5">
+
+                <div>
+
+                  <span className="block text-[7px] font-bold uppercase tracking-[0.25em] text-[#E5CC64]">
+                    BOG Standards
+                  </span>
+
+                  <h3 className="mt-3 text-xl font-semibold uppercase tracking-wide text-[#F3F3F3] sm:text-2xl">
+                    Operating Principles
+                  </h3>
+
+                </div>
+
+
+                <span className="text-[9px] font-semibold tracking-[0.2em] text-white/20">
+                  03
+                </span>
+
+              </div>
+
+
+              {/* PRINCIPLES */}
+
+              <div className="mt-2">
+
+                {operatingPrinciples.map((item, index) => (
+                  <div
+                    key={item.number}
+                    className={`py-6 ${
+                      index !== operatingPrinciples.length - 1
+                        ? "border-b border-white/10"
+                        : ""
+                    }`}
+                  >
+
+                    <div className="flex items-start gap-4">
+
+                      {/* NUMBER */}
+
+                      <div className="flex h-7 w-7 shrink-0 items-center justify-center border border-[#E5CC64]/60 text-[8px] font-bold text-[#E5CC64]">
+                        {item.number}
+                      </div>
+
+
+                      {/* CONTENT */}
+
+                      <div>
+
+                        <h4 className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#F3F3F3]">
+                          {item.title}
+                        </h4>
+
+                        <p className="mt-2 text-xs leading-6 text-white/45">
+                          {item.description}
+                        </p>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                ))}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        {/* =====================================================
+            BOTTOM POSITIONING STRIP
+        ====================================================== */}
+
+        <div className="mt-16 border-y border-[#153B16]/10 py-6">
+
+          <div className="grid gap-6 sm:grid-cols-3 sm:divide-x sm:divide-[#153B16]/10">
+
+            <div className="sm:px-6 sm:first:pl-0">
+
+              <span className="text-[7px] font-bold uppercase tracking-[0.25em] text-[#153B16]/35">
+                Approach
+              </span>
+
+              <p className="mt-2 text-sm font-semibold text-[#153B16]">
+                Structured Trade
+              </p>
+
+            </div>
+
+
+            <div className="sm:px-6">
+
+              <span className="text-[7px] font-bold uppercase tracking-[0.25em] text-[#153B16]/35">
+                Coordination
+              </span>
+
+              <p className="mt-2 text-sm font-semibold text-[#153B16]">
+                Field To Export
+              </p>
+
+            </div>
+
+
+            <div className="sm:px-6">
+
+              <span className="text-[7px] font-bold uppercase tracking-[0.25em] text-[#153B16]/35">
+                Framework
+              </span>
+
+              <p className="mt-2 text-sm font-semibold text-[#153B16]">
+                International B2B
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
     </section>
   );

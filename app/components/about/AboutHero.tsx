@@ -16,9 +16,14 @@ export default function AboutHero() {
         </div>
 
         {/* Heading with Ultra-Tight Line Height */}
-        <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white font-[family-name:var(--font-cinzel)] uppercase mx-auto leading-[0.95]">
-          <span className="block mb-0">Bridging African Resources with</span>
-          <span className="block text-[#E5CC64]">Global Industrial Markets</span>
+        <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white font-[family-name:var(--font-cinzel)] uppercase mx-auto">
+          <span className="block">
+            Bridging African Resources with
+          </span>
+
+          <span className="block mt-3 sm:mt-4 text-[#E5CC64]">
+            Global Industrial Markets
+          </span>
         </h1>
 
         <p className="mt-6 text-xs sm:text-sm md:text-base text-gray-200 max-w-2xl mx-auto font-light leading-relaxed">
