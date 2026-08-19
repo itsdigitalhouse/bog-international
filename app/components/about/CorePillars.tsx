@@ -96,7 +96,7 @@ export default function CorePillars() {
 
             </div>
 
-            <p className="mt-5 max-w-xs text-[10px] uppercase leading-5 tracking-[0.16em] text-white/35">
+            <p className="mt-5 max-w-xs text-[10px] uppercase leading-5 tracking-[0.16em] text-white/80">
               End-to-end commercial capabilities across sourcing, verification,
               logistics and international trade.
             </p>
@@ -133,7 +133,7 @@ export default function CorePillars() {
 
         <div className="mt-12 grid border-t border-white/10 pt-8 lg:grid-cols-[1fr_0.65fr] lg:gap-20">
 
-          <p className="max-w-3xl text-sm leading-7 text-white/55 sm:text-[15px]">
+          <p className="max-w-3xl text-sm leading-7 text-white/90 sm:text-[15px]">
             Bhatia Ocean Gold International maintains end-to-end operational
             control over the mineral supply chain. By managing extraction
             protocols, field inspection, assay accuracy, and customs logistics
@@ -143,7 +143,7 @@ export default function CorePillars() {
 
           <div className="hidden lg:block">
 
-            <div className="flex items-center justify-end gap-3 text-[8px] uppercase tracking-[0.22em] text-white/25">
+            <div className="flex items-center justify-end gap-3 text-[8px] uppercase tracking-[0.22em] text-white/60">
 
               <span>Source</span>
 
@@ -168,7 +168,7 @@ export default function CorePillars() {
 
         <div className="mt-14 border-t border-white/10">
 
-          {pillars.map((item, index) => (
+          {pillars.map((item) => (
             <div
               key={item.number}
               className="group relative border-b border-white/10"
@@ -216,7 +216,7 @@ export default function CorePillars() {
 
                 <div>
 
-                  <p className="max-w-xl text-xs leading-6 text-white/40 transition-colors duration-300 group-hover:text-white/60 sm:text-[13px]">
+                  <p className="max-w-xl text-xs leading-6 text-white/80 transition-colors duration-300 group-hover:text-white sm:text-[13px]">
                     {item.description}
                   </p>
 
@@ -253,7 +253,7 @@ export default function CorePillars() {
               01
             </span>
 
-            <p className="mt-2 text-xs uppercase tracking-[0.08em] text-white/50">
+            <p className="mt-2 text-xs uppercase tracking-[0.08em] text-white/80">
               Mineral Sourcing
             </p>
 
@@ -266,7 +266,7 @@ export default function CorePillars() {
               02
             </span>
 
-            <p className="mt-2 text-xs uppercase tracking-[0.08em] text-white/50">
+            <p className="mt-2 text-xs uppercase tracking-[0.08em] text-white/80">
               Commercial Execution
             </p>
 
@@ -279,7 +279,7 @@ export default function CorePillars() {
               03
             </span>
 
-            <p className="mt-2 text-xs uppercase tracking-[0.08em] text-white/50">
+            <p className="mt-2 text-xs uppercase tracking-[0.08em] text-white/80">
               International Delivery
             </p>
 

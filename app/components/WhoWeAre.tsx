@@ -155,16 +155,16 @@ export default function WhoWeAre() {
             </h2>
 
 
-            {/* Description */}
+            {/* Description (Updated to Black) */}
 
-            <p className="mt-6 max-w-2xl text-sm leading-7 text-[#153B16]/70 sm:text-base sm:leading-8">
+            <p className="mt-6 max-w-2xl text-sm leading-7 text-black sm:text-base sm:leading-8">
               Bhatia Ocean Gold International connects African resources
               with global markets through responsible sourcing, commodity
               trading, export coordination and international B2B supply.
             </p>
 
 
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-[#153B16]/60 sm:text-base sm:leading-8">
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-black sm:text-base sm:leading-8">
               Our business focus spans mining, gold, copper, minerals,
               commodity trading, international trading and export.
             </p>

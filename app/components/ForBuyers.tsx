@@ -67,7 +67,7 @@ export default function ForBuyers() {
 
             <span className="h-px w-10 bg-[#E5CC64] sm:w-14" />
 
-            <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#153B16]/50 sm:text-[10px]">
+            <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-black sm:text-[10px]">
               For International Buyers
             </span>
 
@@ -105,7 +105,8 @@ export default function ForBuyers() {
 
             </h2>
 
-            <p className="mt-6 max-w-2xl text-sm leading-7 text-[#153B16]/60 sm:text-base sm:leading-8">
+            {/* Updated to Solid Black */}
+            <p className="mt-6 max-w-2xl text-sm leading-7 text-black sm:text-base sm:leading-8">
               BOG connects qualified international demand with African-origin
               commodity supply through structured sourcing, trading and export
               coordination.
@@ -189,9 +190,9 @@ export default function ForBuyers() {
                 </div>
 
 
-                {/* DESCRIPTION */}
+                {/* DESCRIPTION (Updated to Solid Black) */}
 
-                <p className="max-w-xl text-sm leading-6 text-[#153B16]/50">
+                <p className="max-w-xl text-sm leading-6 text-black">
                   {step.description}
                 </p>
 
@@ -216,7 +217,7 @@ export default function ForBuyers() {
 
           <div>
 
-            <span className="text-[8px] font-bold uppercase tracking-[0.28em] text-[#153B16]/35">
+            <span className="text-[8px] font-bold uppercase tracking-[0.28em] text-black">
               Start A Commercial Enquiry
             </span>
 
@@ -227,7 +228,8 @@ export default function ForBuyers() {
 
             </h3>
 
-            <p className="mt-4 max-w-xl text-sm leading-6 text-[#153B16]/50">
+            {/* Updated to Solid Black */}
+            <p className="mt-4 max-w-xl text-sm leading-6 text-black">
               Submit your requirement and provide the information needed for
               the next stage of the commercial discussion.
             </p>

@@ -2,6 +2,10 @@ import MiningHero from "@/app/components/mining/MiningHero";
 import MiningOperations from "@/app/components/mining/MiningOperations";
 import MiningProcess from "@/app/components/mining/MiningProcess";
 import MiningCTA from "@/app/components/mining/MiningCTA";
+import MiningGalleryMap from "@/app/components/mining/MiningGalleryMap";
+import MiningSustainability from "@/app/components/mining/MiningSustainability";
+import MiningProductionStats from "../components/mining/MiningProductionStats";
+import MiningConcessionCTA from "../components/mining/MiningConcessionCTA";
 
 export const metadata = {
   title: "Mining & Field Operations | Bhatia Ocean Gold International",
@@ -15,6 +19,10 @@ export default function MiningPage() {
       <MiningOperations />
       <MiningProcess />
       <MiningCTA />
+      <MiningGalleryMap />
+      <MiningSustainability />
+      <MiningProductionStats />
+      <MiningConcessionCTA />
     </main>
   );
 }

@@ -85,7 +85,7 @@ export default function Compliance() {
 
             <span className="h-px w-10 bg-[#E5CC64] sm:w-14" />
 
-            <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#153B16]/55 sm:text-[10px]">
+            <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-black sm:text-[10px]">
               Compliance & Responsible Sourcing
             </span>
 
@@ -126,7 +126,8 @@ export default function Compliance() {
 
           <div className="lg:pb-1">
 
-            <p className="max-w-xl text-sm leading-7 text-[#153B16]/60 sm:text-base sm:leading-8">
+            {/* Updated to Solid Black */}
+            <p className="max-w-xl text-sm leading-7 text-black sm:text-base sm:leading-8">
               BOG's compliance framework supports proper international
               business procedures through verification, documentation,
               regulatory awareness and responsible sourcing.
@@ -189,7 +190,8 @@ export default function Compliance() {
 
                 </h3>
 
-                <p className="mt-5 max-w-md text-sm leading-7 text-[#F3F3F3]/55">
+                {/* Dark card text updated to White */}
+                <p className="mt-5 max-w-md text-sm leading-7 text-white">
                   Source verification, ownership verification and appropriate
                   documentation form part of BOG's approach to responsible
                   international commodity trade.
@@ -210,7 +212,7 @@ export default function Compliance() {
 
                 </div>
 
-                <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-[#F3F3F3]/45">
+                <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-[#F3F3F3]/80">
                   Documentation-led approach
                 </span>
 
@@ -261,9 +263,9 @@ export default function Compliance() {
                   </div>
 
 
-                  {/* Description */}
+                  {/* Description (Updated to Black) */}
 
-                  <p className="max-w-xl text-sm leading-6 text-[#153B16]/55">
+                  <p className="max-w-xl text-sm leading-6 text-black">
                     {item.description}
                   </p>
 
@@ -287,7 +289,7 @@ export default function Compliance() {
 
             <div className="border-b border-[#153B16]/15 px-5 py-6 sm:border-b-0 sm:border-r">
 
-              <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#153B16]/35">
+              <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#153B16]/40">
                 Principle 01
               </span>
 
@@ -295,7 +297,8 @@ export default function Compliance() {
                 Transparency
               </h4>
 
-              <p className="mt-2 text-xs leading-5 text-[#153B16]/50">
+              {/* Updated to Solid Black */}
+              <p className="mt-2 text-xs leading-5 text-black">
                 Clear information and appropriate documentation support
                 professional business relationships.
               </p>
@@ -305,7 +308,7 @@ export default function Compliance() {
 
             <div className="border-b border-[#153B16]/15 px-5 py-6 sm:border-b-0 sm:border-r">
 
-              <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#153B16]/35">
+              <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#153B16]/40">
                 Principle 02
               </span>
 
@@ -313,7 +316,8 @@ export default function Compliance() {
                 Verification
               </h4>
 
-              <p className="mt-2 text-xs leading-5 text-[#153B16]/50">
+              {/* Updated to Solid Black */}
+              <p className="mt-2 text-xs leading-5 text-black">
                 Source, ownership and counterparty information are considered
                 within the compliance process.
               </p>
@@ -323,7 +327,7 @@ export default function Compliance() {
 
             <div className="px-5 py-6">
 
-              <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#153B16]/35">
+              <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#153B16]/40">
                 Principle 03
               </span>
 
@@ -331,7 +335,8 @@ export default function Compliance() {
                 Responsibility
               </h4>
 
-              <p className="mt-2 text-xs leading-5 text-[#153B16]/50">
+              {/* Updated to Solid Black */}
+              <p className="mt-2 text-xs leading-5 text-black">
                 Responsible sourcing and regulatory awareness remain central
                 to international commodity activity.
               </p>
@@ -351,11 +356,12 @@ export default function Compliance() {
 
           <div>
 
-            <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#153B16]/35">
+            <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#153B16]/40">
               Compliance Framework
             </span>
 
-            <p className="mt-2 text-sm text-[#153B16]/55">
+            {/* Updated to Solid Black */}
+            <p className="mt-2 text-sm text-black">
               Explore our approach to compliance and responsible sourcing.
             </p>
 

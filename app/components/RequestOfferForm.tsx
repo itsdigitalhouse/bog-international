@@ -17,7 +17,6 @@ export default function RequestOfferForm() {
       className="relative overflow-hidden border-t border-[#153B16]/10 bg-[#F3F3F3] text-[#153B16]"
     >
       {/* Subtle grid */}
-
       <div className="pointer-events-none absolute inset-0 opacity-40 [background-image:linear-gradient(to_right,rgba(21,59,22,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(21,59,22,0.035)_1px,transparent_1px)] [background-size:80px_80px]" />
 
       <div className="relative z-10 mx-auto max-w-[1500px] px-5 py-20 sm:px-8 sm:py-24 lg:px-14 lg:py-28 xl:px-20">
@@ -72,10 +71,9 @@ export default function RequestOfferForm() {
 
             </h2>
 
-            <p className="mt-6 max-w-lg text-sm leading-7 text-[#153B16]/55 sm:text-base sm:leading-8">
-              Tell us what you are looking for and provide the essential
-              commercial details. Our team can then review your requirement
-              and determine the appropriate next step.
+            {/* FIXED PARAGRAPH */}
+            <p className="mt-6 max-w-lg text-sm leading-relaxed text-[#153B16]/70 sm:text-base sm:leading-8">
+              Tell us what you are looking for and provide the essential commercial details. Our team will review your requirement and determine the appropriate next steps for execution.
             </p>
 
 
@@ -118,12 +116,12 @@ export default function RequestOfferForm() {
             </div>
 
 
-            {/* Small statement */}
+            {/* Small statement / Paragraph */}
 
             <div className="mt-10 max-w-md border-l border-[#E5CC64] pl-5">
 
-              <p className="font-[family-name:var(--font-cinzel)] text-base leading-7 text-[#153B16]/80 sm:text-lg">
-                Structured enquiries for international commodity trade.
+              <p className="font-[family-name:var(--font-cinzel)] text-base leading-snug text-[#153B16]/90 sm:text-lg">
+                Structured enquiries tailored for international commodity trade and strategic partnerships.
               </p>
 
             </div>
@@ -165,7 +163,7 @@ export default function RequestOfferForm() {
               {submitted ? (
 
                 /* =================================================
-                   SUCCESS
+                    SUCCESS
                 ================================================== */
 
                 <div className="flex min-h-[390px] flex-col items-center justify-center px-4 text-center">
@@ -184,8 +182,8 @@ export default function RequestOfferForm() {
                     Enquiry Received
                   </h3>
 
-                  <p className="mt-3 max-w-sm text-sm leading-6 text-white/50">
-                    Your requirement has been submitted successfully.
+                  <p className="mt-3 max-w-sm text-sm leading-6 text-white/60">
+                    Your requirement has been submitted successfully. Our desk will contact you shortly.
                   </p>
 
                   <button
@@ -392,7 +390,7 @@ export default function RequestOfferForm() {
                   </button>
 
 
-                  <p className="text-center text-[7px] leading-4 text-white/25">
+                  <p className="text-center text-[8px] leading-4 text-white/35">
                     Please provide accurate commercial information for review.
                   </p>
 
@@ -413,7 +411,7 @@ export default function RequestOfferForm() {
 
         <div className="mt-12 flex items-center justify-between border-t border-[#153B16]/10 pt-5">
 
-          <span className="text-[8px] uppercase tracking-[0.2em] text-[#153B16]/25">
+          <span className="text-[8px] uppercase tracking-[0.2em] text-[#153B16]/40">
             International B2B Commodity Enquiries
           </span>
 

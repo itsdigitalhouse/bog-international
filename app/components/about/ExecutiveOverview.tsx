@@ -65,7 +65,7 @@ export default function ExecutiveOverview() {
 
               <span className="h-px w-8 bg-[#E5CC64]" />
 
-              <span className="text-[8px] font-semibold uppercase tracking-[0.28em] text-[#153B16]/45">
+              <span className="text-[8px] font-semibold uppercase tracking-[0.28em] text-black/60">
                 Commercial Positioning
               </span>
 
@@ -93,7 +93,7 @@ export default function ExecutiveOverview() {
 
           <div className="lg:pl-8">
 
-            <p className="max-w-xl text-sm leading-7 text-[#153B16]/60 sm:text-[15px]">
+            <p className="max-w-xl text-sm leading-7 text-black sm:text-[15px]">
               Bhatia Ocean Gold International was established to address key
               operational risks in raw mineral sourcing. By reducing
               unnecessary intermediary layers, BOG connects international
@@ -119,7 +119,7 @@ export default function ExecutiveOverview() {
 
             <div className="max-w-3xl">
 
-              <p className="text-sm leading-7 text-[#153B16]/60 sm:text-[15px]">
+              <p className="text-sm leading-7 text-black sm:text-[15px]">
                 Our team coordinates ground inspection, weight and purity
                 assays, legal export licensing, and international shipping
                 protocols including CIF and FOB structures. Every transaction
@@ -162,7 +162,7 @@ export default function ExecutiveOverview() {
 
                   <div>
 
-                    <p className="text-xs leading-6 text-[#153B16]/45">
+                    <p className="text-xs leading-6 text-black/80">
                       {item.description}
                     </p>
 
@@ -244,7 +244,7 @@ export default function ExecutiveOverview() {
                           {item.title}
                         </h4>
 
-                        <p className="mt-2 text-xs leading-6 text-white/45">
+                        <p className="mt-2 text-xs leading-6 text-white/70">
                           {item.description}
                         </p>
 
@@ -274,7 +274,7 @@ export default function ExecutiveOverview() {
 
             <div className="sm:px-6 sm:first:pl-0">
 
-              <span className="text-[7px] font-bold uppercase tracking-[0.25em] text-[#153B16]/35">
+              <span className="text-[7px] font-bold uppercase tracking-[0.25em] text-black/50">
                 Approach
               </span>
 
@@ -287,7 +287,7 @@ export default function ExecutiveOverview() {
 
             <div className="sm:px-6">
 
-              <span className="text-[7px] font-bold uppercase tracking-[0.25em] text-[#153B16]/35">
+              <span className="text-[7px] font-bold uppercase tracking-[0.25em] text-black/50">
                 Coordination
               </span>
 
@@ -300,7 +300,7 @@ export default function ExecutiveOverview() {
 
             <div className="sm:px-6">
 
-              <span className="text-[7px] font-bold uppercase tracking-[0.25em] text-[#153B16]/35">
+              <span className="text-[7px] font-bold uppercase tracking-[0.25em] text-black/50">
                 Framework
               </span>
 

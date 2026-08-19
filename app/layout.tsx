@@ -110,6 +110,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`scroll-smooth ${cinzel.variable} ${manrope.variable}`}
+      suppressHydrationWarning
     >
       <head>
         <script
@@ -117,7 +118,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="antialiased bg-[#F3F3F3] text-[#153B16] selection:bg-[#E5CC64] selection:text-[#153B16] font-sans overflow-x-hidden flex flex-col min-h-screen">
+      <body 
+        suppressHydrationWarning
+        className="antialiased bg-[#F3F3F3] text-[#153B16] selection:bg-[#E5CC64] selection:text-[#153B16] font-sans overflow-x-hidden flex flex-col min-h-screen"
+      >
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />

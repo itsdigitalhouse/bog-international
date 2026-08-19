@@ -80,7 +80,7 @@ export default function QualityAssay() {
 
             <span className="h-px w-10 bg-[#E5CC64] sm:w-14" />
 
-            <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#153B16]/55 sm:text-[10px]">
+            <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-black sm:text-[10px]">
               Quality & Verification
             </span>
 
@@ -121,7 +121,8 @@ export default function QualityAssay() {
 
           <div className="lg:pb-1">
 
-            <p className="max-w-xl text-sm leading-7 text-[#153B16]/65 sm:text-base sm:leading-8">
+            {/* Updated to Solid Black */}
+            <p className="max-w-xl text-sm leading-7 text-black sm:text-base sm:leading-8">
               BOG emphasizes quality assurance, independent inspection,
               laboratory testing, assay, purity and weight verification,
               supported by appropriate documentation.
@@ -177,9 +178,9 @@ export default function QualityAssay() {
                   </h3>
 
 
-                  {/* Description */}
+                  {/* Description (Updated to Black, retains light text on hover) */}
 
-                  <p className="mt-4 text-sm leading-6 text-[#153B16]/55 transition-colors duration-300 group-hover:text-[#F3F3F3]/55">
+                  <p className="mt-4 text-sm leading-6 text-black transition-colors duration-300 group-hover:text-[#F3F3F3]/80">
                     {step.description}
                   </p>
 
@@ -209,7 +210,8 @@ export default function QualityAssay() {
               Product Information
             </span>
 
-            <p className="mt-2 text-sm leading-6 text-[#153B16]/70">
+            {/* Updated to Solid Black */}
+            <p className="mt-2 text-sm leading-6 text-black">
               Product specifications and relevant quality information.
             </p>
 
@@ -222,7 +224,8 @@ export default function QualityAssay() {
               Quality Documentation
             </span>
 
-            <p className="mt-2 text-sm leading-6 text-[#153B16]/70">
+            {/* Updated to Solid Black */}
+            <p className="mt-2 text-sm leading-6 text-black">
               Supporting documentation for transparent product evaluation.
             </p>
 
@@ -235,7 +238,8 @@ export default function QualityAssay() {
               Refinery Documentation
             </span>
 
-            <p className="mt-2 text-sm leading-6 text-[#153B16]/70">
+            {/* Updated to Solid Black */}
+            <p className="mt-2 text-sm leading-6 text-black">
               Relevant refinery documentation where applicable.
             </p>
 
@@ -256,7 +260,8 @@ export default function QualityAssay() {
               Quality & Assay
             </span>
 
-            <p className="mt-2 text-sm text-[#153B16]/60">
+            {/* Updated to Solid Black */}
+            <p className="mt-2 text-sm text-black">
               Learn more about our approach to product verification.
             </p>
 

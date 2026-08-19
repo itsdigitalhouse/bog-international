@@ -24,10 +24,33 @@ const initialPrices: PriceItem[] = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [productDropdown, setProductDropdown] = useState(false);
+  const [sourcingDropdown, setSourcingDropdown] = useState(false);
+  const [mobileProductOpen, setMobileProductOpen] = useState(false);
+  const [mobileSourcingOpen, setMobileSourcingOpen] = useState(false);
   const [prices, setPrices] = useState<PriceItem[]>(initialPrices);
   const [isScrolled, setIsScrolled] = useState(false);
+
   const pathname = usePathname();
 
+  /* =========================================================
+     SMOOTH SCROLL DETECTOR
+  ========================================================= */
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 30) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  /* =========================================================
+     LIVE PRICE SIMULATION
+  ========================================================= */
   useEffect(() => {
     const interval = setInterval(() => {
       setPrices((prevPrices) =>
@@ -35,16 +58,15 @@ export default function Navbar() {
           const isUp = Math.random() > 0.45;
           const percentageChange = (Math.random() * 0.2).toFixed(2);
           const factor = isUp ? 1 : -1;
-          
           const currentNumeric = parseFloat(item.price.replace(/,/g, ""));
-          const delta = (currentNumeric * (parseFloat(percentageChange) / 100)) * factor;
+          const delta = currentNumeric * (parseFloat(percentageChange) / 100) * factor;
           const newPrice = (currentNumeric + delta).toFixed(2);
 
           return {
             ...item,
             price: Number(newPrice).toLocaleString("en-US", { minimumFractionDigits: 2 }),
-            change: `${isUp ? '+' : '-'}${percentageChange}%`,
-            isUp: isUp,
+            change: `${isUp ? "+" : "-"}${percentageChange}%`,
+            isUp,
             status: isUp ? "up" : "down",
           };
         })
@@ -52,7 +74,7 @@ export default function Navbar() {
 
       setTimeout(() => {
         setPrices((latestPrices) =>
-          latestPrices.map((p) => ({ ...p, status: "neutral" }))
+          latestPrices.map((price) => ({ ...price, status: "neutral" }))
         );
       }, 1000);
     }, 3000);
@@ -60,218 +82,189 @@ export default function Navbar() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const isActive = (path: string) => pathname === path;
 
   return (
-    <header 
-      className={`sticky top-0 z-50 transition-all duration-500 ease-in-out ${
-        isScrolled 
-          ? "bg-[#153B16]/85 backdrop-blur-md shadow-[0_10px_30px_rgba(21,59,22,0.45)]" 
-          : "bg-[#153B16] shadow-2xl"
-      }`}
-    >
-      {/* 1. TOP LICENSING INFORMATION BAR */}
-      <div className="border-b border-[#E5CC64]/20 py-1.5 px-3 sm:px-4 text-center font-sans bg-transparent">
-        <div className="max-w-[1536px] mx-auto text-[9px] sm:text-[10px] md:text-[11px] font-semibold text-gray-200 tracking-wider uppercase flex items-center justify-center flex-wrap gap-x-2 sm:gap-x-3 gap-y-1">
-          <span className="whitespace-nowrap">
-            INC NO: <strong className="text-[#E5CC64] font-mono">80034544766608</strong>
+    <header className="sticky top-0 z-50 bg-[#153B16] shadow-xl transition-all duration-500 ease-in-out">
+      {/* =====================================================
+          1. TOP BAR (CERTIFICATE INFO - ULTRA SMOOTH HIDE)
+      ===================================================== */}
+      <div
+        className={`bg-[#153B16] text-gray-300 text-[10px] sm:text-[11px] border-b border-[#E5CC64]/20 transition-all duration-500 ease-in-out overflow-hidden ${
+          isScrolled
+            ? "max-h-0 py-0 opacity-0 border-transparent -translate-y-2 pointer-events-none"
+            : "max-h-12 py-1.5 opacity-100 translate-y-0"
+        }`}
+      >
+        <div className="max-w-[1536px] mx-auto flex items-center justify-center gap-3 sm:gap-6 font-sans tracking-wide overflow-x-auto whitespace-nowrap px-3 sm:px-6 text-center">
+          <span className="flex items-center gap-1.5 text-xs text-[#E5CC64]">
+            <span className="font-semibold text-white">INC NO:</span> 80034544766608
           </span>
-          <span className="text-[#E5CC64]/40 hidden sm:inline">|</span>
-          <span className="whitespace-nowrap">
-            MDL NO: <strong className="text-[#E5CC64] font-mono">20260736</strong>
+          <span className="text-[#E5CC64]/40">|</span>
+          <span className="flex items-center gap-1.5 text-xs text-[#E5CC64]">
+            <span className="font-semibold text-white">MDL NO:</span> 20260736
           </span>
-          <span className="text-[#E5CC64]/40 hidden sm:inline">|</span>
-          <span className="whitespace-nowrap">
-            TRADE LICENSE: <strong className="text-[#E5CC64] font-mono">2605291534</strong>
+          <span className="text-[#E5CC64]/40">|</span>
+          <span className="flex items-center gap-1.5 text-xs text-[#E5CC64]">
+            <span className="font-semibold text-white">TRADE LICENSE:</span> 2605291534
           </span>
+          <span className="hidden md:inline text-[#E5CC64]/40">|</span>
+          <div className="hidden md:flex items-center gap-1.5 text-[10px] text-[#E5CC64] font-semibold uppercase tracking-widest">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            Verified Entity
+          </div>
         </div>
       </div>
 
-      {/* 2. MAIN NAVBAR */}
-      <div className="bg-transparent text-[#F3F3F3] border-b border-[#E5CC64]/15 py-2">
-        <div className="max-w-[1536px] mx-auto px-4 md:px-6 flex items-center justify-between min-h-[70px] md:min-h-[90px]">
-          
-          {/* DESKTOP LEFT MENU - UPDATED FONT SIZE */}
+      {/* =====================================================
+          2. MAIN NAVBAR (ALWAYS VISIBLE)
+      ===================================================== */}
+      <div className="bg-transparent text-[#F3F3F3] border-b border-[#E5CC64]/15">
+        <div
+          className={`max-w-[1536px] mx-auto px-4 md:px-6 flex items-center justify-between transition-all duration-500 ease-in-out ${
+            isScrolled ? "h-[80px] sm:h-[90px]" : "h-[95px] sm:h-[110px]"
+          }`}
+        >
+          {/* DESKTOP LEFT MENU */}
           <nav className="hidden xl:flex items-center space-x-2.5 2xl:space-x-4 text-[10px] 2xl:text-[11px] font-bold uppercase tracking-wider font-[family-name:var(--font-cinzel)] w-1/2 justify-end pr-4">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${
-                isActive('/') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'
+                isActive("/") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"
               }`}
             >
               Home
-              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ease-in-out ${
-                isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'
-              }`} />
+              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ${isActive("/") ? "w-full" : "w-0 group-hover:w-full"}`} />
             </Link>
 
-            <Link 
-              href="/about" 
+            <Link
+              href="/about"
               className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${
-                isActive('/about') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'
+                isActive("/about") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"
               }`}
             >
               About Us
-              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ease-in-out ${
-                isActive('/about') ? 'w-full' : 'w-0 group-hover:w-full'
-              }`} />
+              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ${isActive("/about") ? "w-full" : "w-0 group-hover:w-full"}`} />
             </Link>
 
-            {/* Products Dropdown */}
-            <div 
+            {/* PRODUCTS DROPDOWN */}
+            <div
               className="relative group"
               onMouseEnter={() => setProductDropdown(true)}
               onMouseLeave={() => setProductDropdown(false)}
             >
-              <button className={`flex items-center gap-1 transition focus:outline-none uppercase whitespace-nowrap py-1 ${
-                isActive('/products/gold') || isActive('/products/copper') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'
-              }`}>
-                Our Products <span className="text-[8px] text-[#E5CC64]">▾</span>
+              <button
+                className={`flex items-center gap-1 transition focus:outline-none uppercase whitespace-nowrap py-1 ${
+                  isActive("/products/gold") || isActive("/products/copper") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"
+                }`}
+              >
+                Our Products
+                <span className="text-[8px] text-[#E5CC64]">▾</span>
               </button>
-              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ease-in-out ${
-                isActive('/products/gold') || isActive('/products/copper') ? 'w-full' : 'w-0 group-hover:w-full'
-              }`} />
-              
+              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ${isActive("/products/gold") || isActive("/products/copper") ? "w-full" : "w-0 group-hover:w-full"}`} />
+
               {productDropdown && (
-                <div className="absolute top-full left-0 w-56 bg-[#153B16]/95 backdrop-blur-md border border-[#E5CC64]/30 rounded-none py-2 text-[11px] tracking-wider font-sans normal-case shadow-2xl z-50">
-                  <Link 
-                    href="/products/gold" 
-                    className={`block px-4 py-2 hover:bg-[#E5CC64] hover:text-[#153B16] transition-colors duration-150 capitalize font-medium ${
-                      isActive('/products/gold') ? 'text-[#E5CC64]' : 'text-gray-200'
-                    }`}
-                  >
+                <div className="absolute top-full left-0 w-56 bg-[#153B16] border border-[#E5CC64]/30 py-2 text-[11px] tracking-wider font-sans normal-case shadow-2xl z-50">
+                  <Link href="/products/gold" className={`block px-4 py-2 hover:bg-[#E5CC64] hover:text-[#153B16] transition-colors ${isActive("/products/gold") ? "text-[#E5CC64]" : "text-gray-200"}`}>
                     Gold Trading & Export
                   </Link>
-                  <Link 
-                    href="/products/copper" 
-                    className={`block px-4 py-2 hover:bg-[#E5CC64] hover:text-[#153B16] transition-colors duration-150 capitalize font-medium ${
-                      isActive('/products/copper') ? 'text-[#E5CC64]' : 'text-gray-200'
-                    }`}
-                  >
+                  <Link href="/products/copper" className={`block px-4 py-2 hover:bg-[#E5CC64] hover:text-[#153B16] transition-colors ${isActive("/products/copper") ? "text-[#E5CC64]" : "text-gray-200"}`}>
                     Copper & Cathodes
                   </Link>
                 </div>
               )}
             </div>
 
-            <Link 
-              href="/mining" 
+            <Link
+              href="/mining"
               className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${
-                isActive('/mining') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'
+                isActive("/mining") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"
               }`}
             >
               Mining
-              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ease-in-out ${
-                isActive('/mining') ? 'w-full' : 'w-0 group-hover:w-full'
-              }`} />
+              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ${isActive("/mining") ? "w-full" : "w-0 group-hover:w-full"}`} />
             </Link>
 
-            <Link 
-              href="/international-trading" 
-              className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${
-                isActive('/international-trading') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'
-              }`}
+            {/* GLOBAL SOURCING DROPDOWN */}
+            <div
+              className="relative group"
+              onMouseEnter={() => setSourcingDropdown(true)}
+              onMouseLeave={() => setSourcingDropdown(false)}
             >
-              International Trading
-              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ease-in-out ${
-                isActive('/international-trading') ? 'w-full' : 'w-0 group-hover:w-full'
-              }`} />
-            </Link>
+              <button
+                className={`flex items-center gap-1 transition focus:outline-none uppercase whitespace-nowrap py-1 ${
+                  isActive("/global-sourcing/uganda") || isActive("/global-sourcing/madagascar") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"
+                }`}
+              >
+                Global Sourcing
+                <span className="text-[8px] text-[#E5CC64]">▾</span>
+              </button>
+              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ${isActive("/global-sourcing/uganda") || isActive("/global-sourcing/madagascar") ? "w-full" : "w-0 group-hover:w-full"}`} />
+
+              {sourcingDropdown && (
+                <div className="absolute top-full left-0 w-48 bg-[#153B16] border border-[#E5CC64]/30 py-2 text-[11px] tracking-wider font-sans normal-case shadow-2xl z-50">
+                  <Link href="/global-sourcing/uganda" className={`block px-4 py-2 hover:bg-[#E5CC64] hover:text-[#153B16] transition-colors ${isActive("/global-sourcing/uganda") ? "text-[#E5CC64]" : "text-gray-200"}`}>
+                    Uganda
+                  </Link>
+                  <Link href="/global-sourcing/madagascar" className={`block px-4 py-2 hover:bg-[#E5CC64] hover:text-[#153B16] transition-colors ${isActive("/global-sourcing/madagascar") ? "text-[#E5CC64]" : "text-gray-200"}`}>
+                    Madagascar
+                  </Link>
+                </div>
+              )}
+            </div>
           </nav>
 
-          {/* CENTERED LOGO */}
-          <Link href="/" className="flex items-center justify-center shrink-0 mx-2">
-            <div className="relative w-20 h-16 sm:w-28 sm:h-24 flex items-center justify-center py-1">
+          {/* LOGO */}
+          <Link href="/" className="flex items-center justify-center shrink-0">
+            <div
+              className={`relative transition-all duration-500 ease-in-out ${
+                isScrolled
+                  ? "w-28 h-20 sm:w-36 sm:h-24 scale-105"
+                  : "w-32 h-24 sm:w-44 sm:h-28"
+              }`}
+            >
               <Image
                 src="/LOGO.png"
                 alt="Bhatia Ocean Gold International Logo"
-                width={112}
-                height={96}
-                className={`object-contain transition-all duration-300 ${isScrolled ? 'drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)]' : ''}`}
+                fill
+                className="object-contain"
                 priority
               />
             </div>
           </Link>
 
-          {/* DESKTOP RIGHT MENU - UPDATED FONT SIZE */}
+          {/* DESKTOP RIGHT MENU */}
           <nav className="hidden xl:flex items-center space-x-2.5 2xl:space-x-4 text-[10px] 2xl:text-[11px] font-bold uppercase tracking-wider font-[family-name:var(--font-cinzel)] w-1/2 justify-start pl-4">
-            <Link 
-              href="/export-logistics" 
-              className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${
-                isActive('/export-logistics') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'
-              }`}
-            >
+            <Link href="/export-logistics" className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${isActive("/export-logistics") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"}`}>
               Logistics
-              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ease-in-out ${
-                isActive('/export-logistics') ? 'w-full' : 'w-0 group-hover:w-full'
-              }`} />
+              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ${isActive("/export-logistics") ? "w-full" : "w-0 group-hover:w-full"}`} />
             </Link>
 
-            <Link 
-              href="/quality-assay" 
-              className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${
-                isActive('/quality-assay') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'
-              }`}
-            >
+            <Link href="/quality-assay" className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${isActive("/quality-assay") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"}`}>
               Quality & Assay
-              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ease-in-out ${
-                isActive('/quality-assay') ? 'w-full' : 'w-0 group-hover:w-full'
-              }`} />
+              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ${isActive("/quality-assay") ? "w-full" : "w-0 group-hover:w-full"}`} />
             </Link>
 
-            <Link 
-              href="/compliance" 
-              className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${
-                isActive('/compliance') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'
-              }`}
-            >
+            <Link href="/compliance" className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${isActive("/compliance") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"}`}>
               Compliance
-              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ease-in-out ${
-                isActive('/compliance') ? 'w-full' : 'w-0 group-hover:w-full'
-              }`} />
+              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ${isActive("/compliance") ? "w-full" : "w-0 group-hover:w-full"}`} />
             </Link>
 
-            <Link 
-              href="/for-buyers" 
-              className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${
-                isActive('/for-buyers') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'
-              }`}
-            >
+            <Link href="/for-buyers" className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${isActive("/for-buyers") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"}`}>
               For Buyers
-              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ease-in-out ${
-                isActive('/for-buyers') ? 'w-full' : 'w-0 group-hover:w-full'
-              }`} />
+              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ${isActive("/for-buyers") ? "w-full" : "w-0 group-hover:w-full"}`} />
             </Link>
 
-            <Link 
-              href="/contact" 
-              className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${
-                isActive('/contact') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'
-              }`}
-            >
+            <Link href="/contact" className={`group relative py-1 transition-colors duration-200 whitespace-nowrap ${isActive("/contact") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"}`}>
               Contact Us
-              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ease-in-out ${
-                isActive('/contact') ? 'w-full' : 'w-0 group-hover:w-full'
-              }`} />
+              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#E5CC64] transition-all duration-300 ${isActive("/contact") ? "w-full" : "w-0 group-hover:w-full"}`} />
             </Link>
           </nav>
 
-          {/* MOBILE TOGGLE BUTTON */}
-          <button 
+          {/* MOBILE MENU BUTTON */}
+          <button
             onClick={() => setIsOpen(!isOpen)}
-            className="xl:hidden text-[#E5CC64] focus:outline-none p-2 border border-[#E5CC64]/30 bg-[#153B16] ml-auto"
+            className="xl:hidden text-[#E5CC64] focus:outline-none p-2 border border-[#E5CC64]/30 bg-[#153B16]"
             aria-label="Toggle Menu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -284,81 +277,136 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* MOBILE DRAWER MENU */}
+        {/* MOBILE DRAWER */}
         {isOpen && (
-          <div className="xl:hidden bg-[#153B16]/95 backdrop-blur-md border-t border-[#E5CC64]/20 px-6 py-6 space-y-4 text-xs font-bold font-[family-name:var(--font-cinzel)] uppercase tracking-wider">
-            <Link href="/" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>Home</Link>
-            <Link href="/about" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/about') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>About Us</Link>
-            
-            <div className="pl-4 border-l border-[#E5CC64]/40 my-3 space-y-2 font-sans normal-case">
-              <span className="text-[10px] text-[#E5CC64] font-bold tracking-widest uppercase block font-[family-name:var(--font-cinzel)]">Our Products</span>
-              <Link href="/products/gold" onClick={() => setIsOpen(false)} className={`block py-1 text-xs ${isActive('/products/gold') ? 'text-[#E5CC64]' : 'text-gray-300 hover:text-[#E5CC64]'}`}>Gold Trading & Export</Link>
-              <Link href="/products/copper" onClick={() => setIsOpen(false)} className={`block py-1 text-xs ${isActive('/products/copper') ? 'text-[#E5CC64]' : 'text-gray-300 hover:text-[#E5CC64]'}`}>Copper & Copper Cathodes</Link>
+          <div className="xl:hidden bg-[#153B16] border-t border-[#E5CC64]/20 px-6 py-6 space-y-4 text-xs font-bold font-[family-name:var(--font-cinzel)] uppercase tracking-wider max-h-[85vh] overflow-y-auto">
+            <Link href="/" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive("/") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"}`}>
+              Home
+            </Link>
+
+            <Link href="/about" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive("/about") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"}`}>
+              About Us
+            </Link>
+
+            <div>
+              <button
+                onClick={() => setMobileProductOpen(!mobileProductOpen)}
+                className={`w-full flex items-center justify-between py-1 text-left uppercase font-bold focus:outline-none ${
+                  isActive("/products/gold") || isActive("/products/copper") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"
+                }`}
+              >
+                <span>Our Products</span>
+                <span className="text-[#E5CC64] text-sm ml-2 font-mono">{mobileProductOpen ? "−" : "+"}</span>
+              </button>
+
+              {mobileProductOpen && (
+                <div className="pl-4 border-l border-[#E5CC64]/40 my-2 space-y-2 font-sans normal-case">
+                  <Link href="/products/gold" onClick={() => setIsOpen(false)} className={`block py-1 text-xs ${isActive("/products/gold") ? "text-[#E5CC64]" : "text-gray-300 hover:text-[#E5CC64]"}`}>
+                    Gold Trading & Export
+                  </Link>
+                  <Link href="/products/copper" onClick={() => setIsOpen(false)} className={`block py-1 text-xs ${isActive("/products/copper") ? "text-[#E5CC64]" : "text-gray-300 hover:text-[#E5CC64]"}`}>
+                    Copper & Copper Cathodes
+                  </Link>
+                </div>
+              )}
             </div>
 
-            <Link href="/mining" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/mining') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>Mining & Development</Link>
-            <Link href="/international-trading" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/international-trading') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>International Trading</Link>
-            <Link href="/export-logistics" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/export-logistics') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>Export & Logistics</Link>
-            <Link href="/quality-assay" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/quality-assay') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>Quality & Assay</Link>
-            <Link href="/compliance" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/compliance') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>Compliance</Link>
-            <Link href="/for-buyers" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/for-buyers') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>For Buyers</Link>
-            <Link href="/contact" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive('/contact') ? 'text-[#E5CC64]' : 'text-white hover:text-[#E5CC64]'}`}>Contact Us</Link>
+            <Link href="/mining" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive("/mining") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"}`}>
+              Mining & Development
+            </Link>
+
+            <div>
+              <button
+                onClick={() => setMobileSourcingOpen(!mobileSourcingOpen)}
+                className={`w-full flex items-center justify-between py-1 text-left uppercase font-bold focus:outline-none ${
+                  isActive("/global-sourcing/uganda") || isActive("/global-sourcing/madagascar") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"
+                }`}
+              >
+                <span>Global Sourcing</span>
+                <span className="text-[#E5CC64] text-sm ml-2 font-mono">{mobileSourcingOpen ? "−" : "+"}</span>
+              </button>
+
+              {mobileSourcingOpen && (
+                <div className="pl-4 border-l border-[#E5CC64]/40 my-2 space-y-2 font-sans normal-case">
+                  <Link href="/global-sourcing/uganda" onClick={() => setIsOpen(false)} className={`block py-1 text-xs ${isActive("/global-sourcing/uganda") ? "text-[#E5CC64]" : "text-gray-300 hover:text-[#E5CC64]"}`}>
+                    Uganda
+                  </Link>
+                  <Link href="/global-sourcing/madagascar" onClick={() => setIsOpen(false)} className={`block py-1 text-xs ${isActive("/global-sourcing/madagascar") ? "text-[#E5CC64]" : "text-gray-300 hover:text-[#E5CC64]"}`}>
+                    Madagascar
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            <Link href="/export-logistics" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive("/export-logistics") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"}`}>
+              Export & Logistics
+            </Link>
+
+            <Link href="/quality-assay" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive("/quality-assay") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"}`}>
+              Quality & Assay
+            </Link>
+
+            <Link href="/compliance" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive("/compliance") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"}`}>
+              Compliance
+            </Link>
+
+            <Link href="/for-buyers" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive("/for-buyers") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"}`}>
+              For Buyers
+            </Link>
+
+            <Link href="/contact" onClick={() => setIsOpen(false)} className={`block py-1 ${isActive("/contact") ? "text-[#E5CC64]" : "text-white hover:text-[#E5CC64]"}`}>
+              Contact Us
+            </Link>
           </div>
         )}
       </div>
 
-      {/* 3. DYNAMIC FULLY RESPONSIVE LIVE COMMODITY TICKER BAR */}
-      <div 
-        className={`text-[#f1f1f1] text-[10px] sm:text-[11px] border-b border-[#E5CC64]/25 py-1.5 px-2 sm:px-4 font-mono tracking-wider transition-colors duration-500 ${
-          isScrolled ? "bg-[#1E4D1F]/40" : "bg-transparent"
+      {/* =====================================================
+          3. BOTTOM LIVE TICKER (ULTRA SMOOTH HIDE)
+      ===================================================== */}
+      <div
+        className={`bg-[#153B16] text-[#f1f1f1] text-[10px] sm:text-[11px] border-t border-[#E5CC64]/20 font-mono transition-all duration-500 ease-in-out overflow-hidden ${
+          isScrolled
+            ? "max-h-0 py-0 opacity-0 border-transparent translate-y-2 pointer-events-none"
+            : "max-h-12 py-1.5 opacity-100 translate-y-0"
         }`}
       >
-        <div className="max-w-[1536px] mx-auto flex items-center justify-between gap-2 sm:gap-4">
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 bg-[#E5CC64]/15 px-1.5 sm:px-2.5 py-0.5 rounded border border-[#E5CC64]/40 shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E5CC64] animate-pulse"></span>
-            <span className="text-[8px] sm:text-[9px] font-bold text-[#E5CC64] tracking-widest font-sans uppercase whitespace-nowrap">
+        <div className="max-w-[1536px] mx-auto flex items-center gap-2 px-2 sm:px-4">
+          <div className="flex items-center gap-1.5 shrink-0 bg-[#E5CC64]/15 px-2 py-0.5 rounded border border-[#E5CC64]/50 z-10">
+            <span className="w-2 h-2 rounded-full bg-[#E5CC64] animate-pulse" />
+            <span className="text-[9px] font-bold text-[#E5CC64] tracking-widest font-sans uppercase whitespace-nowrap">
               LIVE RATES
             </span>
           </div>
 
-          <div className="flex items-center justify-start md:justify-center gap-4 sm:gap-6 md:gap-8 overflow-x-auto no-scrollbar whitespace-nowrap scroll-smooth w-full px-1">
-            {prices.map((item) => {
-              const flashBg = 
-                item.status === "up" 
-                  ? "bg-emerald-500/20 border-emerald-400/40" 
-                  : item.status === "down" 
-                  ? "bg-rose-500/20 border-rose-400/40" 
-                  : "bg-transparent border-transparent";
+          <div className="flex-1 overflow-hidden">
+            <div className="flex items-center justify-center gap-3 sm:gap-8 min-w-max w-full">
+              {prices.map((item) => {
+                const flashBg =
+                  item.status === "up"
+                    ? "bg-emerald-500/20 border-emerald-400/40"
+                    : item.status === "down"
+                    ? "bg-rose-500/20 border-rose-400/40"
+                    : "bg-transparent border-transparent";
 
-              return (
-                <div 
-                  key={item.name} 
-                  className={`flex items-center gap-1 sm:gap-1.5 shrink-0 px-2 py-0.5 rounded border transition-all duration-500 ${flashBg}`}
-                >
-                  <span className="font-semibold text-gray-300 text-[9px] sm:text-[10px] tracking-wider">
-                    {item.name} <span className="hidden xs:inline">{item.unit}:</span>
-                  </span>
-                  
-                  <span className="font-bold text-[#F3E5AB]">
-                    ${item.price}
-                  </span>
-
-                  <span 
-                    className={`text-[9px] sm:text-[10px] font-bold transition-all duration-300 flex items-center gap-0.5 ${
-                      item.isUp ? 'text-emerald-400' : 'text-rose-400'
-                    }`}
+                return (
+                  <div
+                    key={item.name}
+                    className={`flex items-center gap-1.5 shrink-0 px-2 py-0.5 rounded border transition-colors duration-300 ${flashBg}`}
                   >
-                    <span className="inline-block animate-bounce" style={{ animationDuration: "1s" }}>
-                      {item.isUp ? '▲' : '▼'}
-                    </span> 
-                    {item.change}
-                  </span>
-                </div>
-              );
-            })}
+                    <span className="font-semibold text-gray-300 text-[10px] tracking-wider">{item.name}:</span>
+                    <span className="font-bold text-[#F3E5AB]">${item.price}</span>
+                    <span className={`text-[10px] font-bold flex items-center gap-0.5 ${item.isUp ? "text-emerald-400" : "text-rose-400"}`}>
+                      <span>{item.isUp ? "▲" : "▼"}</span>
+                      {item.change}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="hidden xl:flex items-center text-[9px] text-gray-300 shrink-0 font-sans tracking-widest uppercase">
+          <div className="hidden xl:flex items-center text-[9px] text-gray-300 shrink-0 font-sans tracking-widest uppercase ml-auto">
             LBMA DIRECT FEEDS
           </div>
         </div>

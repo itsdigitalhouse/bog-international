@@ -104,7 +104,7 @@ export default function ProductCards() {
 
             </div>
 
-            <span className="hidden font-mono text-[8px] uppercase tracking-[0.3em] text-[#F3F3F3]/30 sm:block">
+            <span className="hidden font-mono text-[8px] uppercase tracking-[0.3em] text-white/50 sm:block">
               BOG / 03
             </span>
 
@@ -113,7 +113,7 @@ export default function ProductCards() {
 
           <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_0.65fr] lg:items-end">
 
-            <h2 className="max-w-3xl font-[family-name:var(--font-cinzel)] text-[36px] font-semibold leading-[1.08] tracking-[-0.02em] sm:text-[44px] md:text-[48px] lg:text-[52px]">
+            <h2 className="max-w-3xl font-[family-name:var(--font-cinzel)] text-[36px] font-semibold leading-[1.08] tracking-[-0.02em] text-white sm:text-[44px] md:text-[48px] lg:text-[52px]">
               Our Products
               <br />
               <span className="text-[#E5CC64]">
@@ -121,7 +121,8 @@ export default function ProductCards() {
               </span>
             </h2>
 
-            <p className="max-w-xl text-sm leading-7 text-[#F3F3F3]/55 lg:pb-1 lg:text-right">
+            {/* Paragraph Text Updated to Pure White */}
+            <p className="max-w-xl text-sm leading-7 text-white lg:pb-1 lg:text-right">
               Connecting African-origin resources with international B2B
               demand through structured sourcing, trading and export.
             </p>
@@ -180,7 +181,7 @@ export default function ProductCards() {
                       {product.category}
                     </span>
 
-                    <h3 className="mt-2 max-w-md font-[family-name:var(--font-cinzel)] text-xl font-medium leading-tight text-[#F3F3F3] transition-colors duration-300 group-hover:text-[#E5CC64] sm:text-2xl">
+                    <h3 className="mt-2 max-w-md font-[family-name:var(--font-cinzel)] text-xl font-medium leading-tight text-white transition-colors duration-300 group-hover:text-[#E5CC64] sm:text-2xl">
                       {product.title}
                     </h3>
 
@@ -195,7 +196,8 @@ export default function ProductCards() {
 
                 <div className="mt-5 lg:mt-0">
 
-                  <p className="max-w-xl text-sm leading-6 text-[#F3F3F3]/55">
+                  {/* Paragraph Text Updated to Pure White */}
+                  <p className="max-w-xl text-sm leading-6 text-white">
                     {product.description}
                   </p>
 
@@ -204,7 +206,7 @@ export default function ProductCards() {
                     {product.features.map((feature) => (
                       <span
                         key={feature}
-                        className="flex items-center gap-2 text-[8px] font-bold uppercase tracking-[0.14em] text-[#F3F3F3]/35"
+                        className="flex items-center gap-2 text-[8px] font-bold uppercase tracking-[0.14em] text-white/80"
                       >
                         <span className="h-1 w-1 rounded-full bg-[#E5CC64]" />
                         {feature}
@@ -256,7 +258,7 @@ export default function ProductCards() {
               International Buyers
             </span>
 
-            <h3 className="mt-2 font-[family-name:var(--font-cinzel)] text-xl text-[#F3F3F3] sm:text-2xl">
+            <h3 className="mt-2 font-[family-name:var(--font-cinzel)] text-xl text-white sm:text-2xl">
               Have a specific commodity requirement?
             </h3>
 
@@ -285,7 +287,7 @@ export default function ProductCards() {
 
         <div className="mt-6 flex items-center justify-between">
 
-          <span className="text-[8px] uppercase tracking-[0.2em] text-[#F3F3F3]/25">
+          <span className="text-[8px] uppercase tracking-[0.2em] text-white/60">
             African Origin • International Markets
           </span>
 

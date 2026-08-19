@@ -105,14 +105,15 @@ export default function OurGlobalOperations() {
 
           <div className="lg:pl-10">
 
-            <p className="max-w-xl text-sm leading-7 text-[#153B16]/60 sm:text-[15px] sm:leading-7">
+            {/* Updated Paragraphs to Black */}
+            <p className="max-w-xl text-sm leading-7 text-black sm:text-[15px] sm:leading-7">
               Bhatia Ocean Gold International connects international buyers
               with strategic sourcing opportunities across Uganda and
               Madagascar through a professional international business
               network.
             </p>
 
-            <p className="mt-4 max-w-xl text-sm leading-7 text-[#153B16]/45">
+            <p className="mt-4 max-w-xl text-sm leading-7 text-black">
               Access to each market depends on product availability, origin,
               quality, specifications, quantity, pricing and logistics.
             </p>
@@ -255,9 +256,9 @@ export default function OurGlobalOperations() {
               </div>
 
 
-              {/* DESCRIPTION */}
+              {/* DESCRIPTION (Updated to Black) */}
 
-              <p className="relative mt-7 max-w-xl text-sm leading-7 text-[#153B16]/55">
+              <p className="relative mt-7 max-w-xl text-sm leading-7 text-black">
                 {operation.description}
               </p>
 
@@ -282,7 +283,7 @@ export default function OurGlobalOperations() {
                   {operation.products.map((product) => (
                     <span
                       key={product}
-                      className="text-[7px] font-semibold uppercase tracking-[0.12em] text-[#153B16]/50"
+                      className="text-[7px] font-semibold uppercase tracking-[0.12em] text-[#153B16]/80"
                     >
                       {product}
                     </span>
@@ -317,7 +318,8 @@ export default function OurGlobalOperations() {
                     {operation.secondaryEntity.category}
                   </p>
 
-                  <p className="mt-3 text-sm leading-6 text-[#153B16]/50">
+                  {/* Secondary Description Updated to Black */}
+                  <p className="mt-3 text-sm leading-6 text-black">
                     {operation.secondaryEntity.description}
                   </p>
 
@@ -327,7 +329,7 @@ export default function OurGlobalOperations() {
                     {operation.secondaryEntity.products.map((product) => (
                       <span
                         key={product}
-                        className="text-[7px] font-semibold uppercase tracking-[0.12em] text-[#153B16]/40"
+                        className="text-[7px] font-semibold uppercase tracking-[0.12em] text-[#153B16]/80"
                       >
                         {product}
                       </span>
@@ -367,17 +369,17 @@ export default function OurGlobalOperations() {
             </div>
 
 
-            {/* RIGHT */}
+            {/* RIGHT (Updated Dark Box Paragraphs to Pure White) */}
 
             <div>
 
-              <p className="text-sm leading-7 text-white/55">
+              <p className="text-sm leading-7 text-white">
                 International buyers can inquire about suitable products from
                 Uganda or Madagascar depending on origin, availability,
                 specifications, quantity, pricing and logistics.
               </p>
 
-              <p className="mt-4 text-sm leading-7 text-white/35">
+              <p className="mt-4 text-sm leading-7 text-white/80">
                 Each relevant company or operation handles products according
                 to its own business activity and sourcing capability.
               </p>
@@ -401,7 +403,8 @@ export default function OurGlobalOperations() {
               International Sourcing
             </p>
 
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-[#153B16]/50">
+            {/* Footer CTA Paragraph Updated to Black */}
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-black">
               Tell us the product, quantity, specifications and preferred
               origin you require, and our team can identify the appropriate
               sourcing opportunity.
