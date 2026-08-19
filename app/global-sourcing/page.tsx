@@ -1,5 +1,5 @@
-import UgandaPage from "../../components/global-sourcing/uganda";
+import { redirect } from "next/navigation";
 
 export default function Page() {
-  return <UgandaPage />;
+  redirect("/global-sourcing/uganda");
 }
