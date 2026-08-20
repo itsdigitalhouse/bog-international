@@ -1,430 +1,240 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowRight, ShieldCheck, MapPin, Anchor, Handshake, Users, ShieldAlert } from "lucide-react";
 
-const operations = [
+// MINIMALIST SVG BADGE FLAGS
+const UgandaFlag = () => (
+  <svg className="h-3.5 w-5 rounded-sm shrink-0 border border-black/10 inline-block" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+    <rect width="900" height="100" fill="#000"/>
+    <rect y="100" width="900" height="100" fill="#FCDC04"/>
+    <rect y="200" width="900" height="100" fill="#D90000"/>
+    <rect y="300" width="900" height="100" fill="#000"/>
+    <rect y="400" width="900" height="100" fill="#FCDC04"/>
+    <rect y="500" width="900" height="100" fill="#D90000"/>
+    <circle cx="450" cy="300" r="80" fill="#FFF"/>
+  </svg>
+);
+
+const MadagascarFlag = () => (
+  <svg className="h-3.5 w-5 rounded-sm shrink-0 border border-black/10 inline-block" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+    <rect width="300" height="600" fill="#FFF"/>
+    <rect x="300" width="600" height="300" fill="#FC3D32"/>
+    <rect x="300" y="300" width="600" height="300" fill="#007E3A"/>
+  </svg>
+);
+
+const operationsData = [
   {
-    number: "01",
-    country: "UGANDA",
-    region: "East Africa",
-    entity: "Bhatia Ocean Gold",
-    shortName: "BOG INTERNATIONAL",
-    category: "Minerals · Agriculture · Natural Products",
-    description:
-      "Bhatia Ocean Gold International is our Uganda-based sourcing and trading operation, connecting regional resource opportunities with international B2B markets.",
-    products: [
-      "Gold",
-      "Copper",
-      "Vanilla",
-      "Coffee",
-      "Grains",
-      "Beans",
-      "Agricultural Products",
-    ],
+    hubId: "HUB 01",
+    country: "Uganda",
+    flag: UgandaFlag,
+    coords: "0.3476° N, 32.5825° E",
+    collaborationType: "Primary Direct Operational Hub",
+    collabBadge: "Direct Origin Operations",
+    entity: "Bhatia Ocean Gold International",
+    code: "BOG INTERNATIONAL",
+    sector: "Minerals · Agriculture · Natural Products",
+    description: "Bhatia Ocean Gold International is our primary East African sourcing and trade execution engine, connecting mineral deposits and agricultural trade hubs with global B2B markets.",
+    gateway: "Port of Mombasa Export Gateway / Entebbe Air Logistics",
+    commodities: ["Gold", "Copper", "Vanilla", "Coffee", "Grains", "Beans", "Agricultural Products"],
+    originParam: "Uganda",
   },
   {
-    number: "02",
-    country: "MADAGASCAR",
-    region: "Indian Ocean",
+    hubId: "HUB 02",
+    country: "Madagascar",
+    flag: MadagascarFlag,
+    coords: "18.8792° S, 47.5079° E",
+    collaborationType: "Strategic Agricultural Partner",
+    collabBadge: "BOG × BMS Spices Joint Network",
     entity: "Best Spices of Madagascar",
-    shortName: "BMS",
-    category: "Agricultural & Food Products",
-    description:
-      "Best Spices of Madagascar focuses on agricultural and food commodities sourced from Madagascar, forming the agricultural and food-products operation within the network.",
-    products: [
-      "Spices",
-      "Vanilla",
-      "Grains",
-      "Beans",
-      "Agricultural Products",
-    ],
-    secondaryEntity: {
-      name: "ALDO PARTNERS",
-      category: "Mining & Minerals",
-      description:
-        "A separate Madagascar operation focused on mining and natural-resource commodities.",
-      products: [
-        "Gold",
-        "Chrome / Chromium",
-        "Stones",
-        "Mining & Minerals",
-      ],
-    },
+    code: "BMS SPICES",
+    sector: "Spices & Food Commodities",
+    description: "Best Spices of Madagascar manages high-value agricultural commodities and spices directly from island partners to global food processors and B2B importers.",
+    gateway: "Port of Toamasina Maritime Logistics",
+    commodities: ["Spices", "Vanilla", "Grains", "Beans", "Agricultural Products"],
+    originParam: "Madagascar",
+  },
+  {
+    hubId: "HUB 03",
+    country: "Madagascar",
+    flag: MadagascarFlag,
+    coords: "18.8792° S, 47.5079° E",
+    collaborationType: "Specialized Mining Infrastructure Partner",
+    collabBadge: "BOG × ALDO Strategic Alliance",
+    entity: "ALDO PARTNERS",
+    code: "ALDO MINING DIVISION",
+    sector: "Mining & Industrial Minerals",
+    description: "Specialized Madagascar mining infrastructure focusing on industrial ores, precious stones, and strategic minerals.",
+    gateway: "Port of Toamasina Strategic Bulk Gateway",
+    commodities: ["Gold", "Chrome / Chromium", "Precious Stones", "Mining & Minerals"],
+    originParam: "Madagascar-Mining",
   },
 ];
 
-export default function OurGlobalOperations() {
+export default function GlobalCollaborationsMatrix() {
   return (
     <section
       id="global-operations"
-      className="relative w-full overflow-hidden bg-[#F3F3F3] text-[#153B16]"
+      className="relative w-full bg-[#F3F3F3] text-[#153B16] selection:bg-[#E5CC64] selection:text-[#153B16]"
     >
-      {/* TOP ACCENT */}
       <div className="h-px w-full bg-[#E5CC64]" />
 
-      <div className="w-full px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28 xl:px-16">
-
-        {/* =====================================================
-            SECTION HEADER
-        ====================================================== */}
-
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-
-          {/* LEFT */}
-
+      <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28 xl:px-16">
+        
+        {/* SECTION HEADER WITH COLLABORATION FOCUS */}
+        <div className="flex flex-col justify-between gap-6 pb-12 border-b border-[#153B16]/15 lg:flex-row lg:items-end">
           <div>
-
-            <div className="mb-4 flex items-center gap-3">
+            <div className="mb-3 flex items-center gap-2.5">
               <span className="h-px w-8 bg-[#E5CC64]" />
-
-              <span className="text-[8px] font-semibold uppercase tracking-[0.28em] text-[#153B16]/50">
-                Our Global Operations
+              <span className="text-[9px] font-bold uppercase tracking-[0.28em] text-[#153B16]/70 flex items-center gap-1.5">
+                <Handshake size={13} className="text-[#E5CC64]" /> Institutional Alliances & Sourcing Network
               </span>
             </div>
-
-            {/* MAIN HEADING */}
-
-            <h2 className="max-w-4xl text-3xl font-semibold leading-[1.1] tracking-[-0.02em] sm:text-4xl lg:text-[44px]">
-
-              <span className="text-[#153B16]">
-                Uganda & Madagascar
-              </span>
-
-              <br />
-
-              <span className="font-normal text-[#E5CC64]">
-                Strategic Sourcing Solution
-              </span>
-
+            <h2 className="font-[family-name:var(--font-cinzel)] text-3xl font-semibold leading-tight text-[#153B16] sm:text-4xl lg:text-[42px]">
+              Uganda & Madagascar <br className="hidden sm:inline" />
+              <span className="font-normal text-[#E5CC64]">Collaborative Trade Network</span>
             </h2>
-
           </div>
 
-
-          {/* RIGHT */}
-
-          <div className="lg:pl-10">
-
-            {/* Updated Paragraphs to Black */}
-            <p className="max-w-xl text-sm leading-7 text-black sm:text-[15px] sm:leading-7">
-              Bhatia Ocean Gold International connects international buyers
-              with strategic sourcing opportunities across Uganda and
-              Madagascar through a professional international business
-              network.
-            </p>
-
-            <p className="mt-4 max-w-xl text-sm leading-7 text-black">
-              Access to each market depends on product availability, origin,
-              quality, specifications, quantity, pricing and logistics.
-            </p>
-
-          </div>
-
+          <p className="max-w-xl text-xs sm:text-sm leading-relaxed text-black/90">
+            Bhatia Ocean Gold International operates a unified international sourcing network across East Africa and the Indian Ocean in direct collaboration with strategic regional entities, offering institutional buyers direct access to verified origins.
+          </p>
         </div>
 
-
-        {/* =====================================================
-            NETWORK INTRO STRIP
-        ====================================================== */}
-
-        <div className="mt-14 border-y border-[#153B16]/10 py-6">
-
-          <div className="grid gap-6 md:grid-cols-[1fr_auto_1fr] md:items-center">
-
-            {/* UGANDA */}
-
-            <div>
-
-              <span className="text-[7px] font-semibold uppercase tracking-[0.25em] text-[#153B16]/40">
-                Strategic Market 01
-              </span>
-
-              <p className="mt-2 text-lg font-semibold tracking-wide text-[#153B16]">
-                UGANDA
-              </p>
-
-              <p className="mt-1 text-xs text-[#153B16]/45">
-                East Africa
-              </p>
-
-            </div>
-
-
-            {/* CENTER */}
-
-            <div className="hidden md:flex md:items-center md:gap-4">
-
-              <span className="h-px w-10 bg-[#E5CC64]" />
-
-              <span className="text-[7px] font-bold uppercase tracking-[0.22em] text-[#153B16]/45">
-                One International Network
-              </span>
-
-              <span className="h-px w-10 bg-[#E5CC64]" />
-
-            </div>
-
-
-            {/* MADAGASCAR */}
-
-            <div className="md:text-right">
-
-              <span className="text-[7px] font-semibold uppercase tracking-[0.25em] text-[#153B16]/40">
-                Strategic Market 02
-              </span>
-
-              <p className="mt-2 text-lg font-semibold tracking-wide text-[#153B16]">
-                MADAGASCAR
-              </p>
-
-              <p className="mt-1 text-xs text-[#153B16]/45">
-                Indian Ocean
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        {/* =====================================================
-            OPERATION CARDS
-        ====================================================== */}
-
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
-
-          {operations.map((operation) => (
-            <article
-              key={operation.number}
-              className="group relative overflow-hidden border border-[#153B16]/10 bg-white p-7 transition-all duration-500 hover:border-[#E5CC64]/70 sm:p-9 lg:p-10"
-            >
-
-              {/* BACKGROUND NUMBER */}
-
-              <span className="pointer-events-none absolute -right-3 -top-5 font-[family-name:var(--font-cinzel)] text-[130px] leading-none text-[#153B16]/[0.025]">
-                {operation.number}
-              </span>
-
-
-              {/* COUNTRY HEADER */}
-
-              <div className="relative flex items-start justify-between">
-
-                <div>
-
-                  <span className="text-[7px] font-semibold uppercase tracking-[0.28em] text-[#153B16]/35">
-                    {operation.number} / Regional Operation
-                  </span>
-
-                  <h3 className="mt-3 text-2xl font-semibold tracking-wide text-[#153B16] sm:text-3xl">
-                    {operation.country}
-                  </h3>
-
-                  <p className="mt-2 text-[8px] font-semibold uppercase tracking-[0.2em] text-[#E5CC64]">
-                    {operation.region}
-                  </p>
-
-                </div>
-
-
-                {/* LOCATION MARKER */}
-
-                <div className="flex h-9 w-9 items-center justify-center border border-[#E5CC64]/50">
-                  <span className="h-2 w-2 rounded-full bg-[#E5CC64]" />
-                </div>
-
-              </div>
-
-
-              {/* ENTITY */}
-
-              <div className="relative mt-9 border-l-2 border-[#E5CC64] pl-5">
-
-                <p className="text-lg font-semibold tracking-wide text-[#153B16] sm:text-xl">
-                  {operation.entity}
-                </p>
-
-                <p className="mt-1 text-[8px] font-semibold uppercase tracking-[0.2em] text-[#153B16]/40">
-                  {operation.shortName}
-                </p>
-
-                <p className="mt-3 text-[7px] font-semibold uppercase tracking-[0.16em] text-[#153B16]/40">
-                  {operation.category}
-                </p>
-
-              </div>
-
-
-              {/* DESCRIPTION (Updated to Black) */}
-
-              <p className="relative mt-7 max-w-xl text-sm leading-7 text-black">
-                {operation.description}
-              </p>
-
-
-              {/* PRODUCTS */}
-
-              <div className="relative mt-8">
-
-                <div className="mb-4 flex items-center gap-3">
-
-                  <span className="h-px w-5 bg-[#E5CC64]" />
-
-                  <span className="text-[7px] font-bold uppercase tracking-[0.24em] text-[#153B16]/40">
-                    Main Product Categories
-                  </span>
-
-                </div>
-
-
-                <div className="flex flex-wrap gap-x-5 gap-y-3">
-
-                  {operation.products.map((product) => (
-                    <span
-                      key={product}
-                      className="text-[7px] font-semibold uppercase tracking-[0.12em] text-[#153B16]/80"
-                    >
-                      {product}
-                    </span>
-                  ))}
-
-                </div>
-
-              </div>
-
-
-              {/* SECOND MADAGASCAR ENTITY */}
-
-              {operation.secondaryEntity && (
-                <div className="relative mt-9 border-t border-[#153B16]/10 pt-7">
-
-                  <div className="flex items-center gap-3">
-
-                    <span className="h-px w-5 bg-[#E5CC64]" />
-
-                    <span className="text-[7px] font-bold uppercase tracking-[0.24em] text-[#153B16]/40">
-                      Separate Mining Operation
-                    </span>
-
-                  </div>
-
-
-                  <h4 className="mt-4 text-lg font-semibold tracking-wide text-[#153B16]">
-                    {operation.secondaryEntity.name}
-                  </h4>
-
-                  <p className="mt-1 text-[8px] font-semibold uppercase tracking-[0.18em] text-[#E5CC64]">
-                    {operation.secondaryEntity.category}
-                  </p>
-
-                  {/* Secondary Description Updated to Black */}
-                  <p className="mt-3 text-sm leading-6 text-black">
-                    {operation.secondaryEntity.description}
-                  </p>
-
-
-                  <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
-
-                    {operation.secondaryEntity.products.map((product) => (
-                      <span
-                        key={product}
-                        className="text-[7px] font-semibold uppercase tracking-[0.12em] text-[#153B16]/80"
-                      >
-                        {product}
+        {/* COLLABORATIVE MATRIX TABLE */}
+        <div className="mt-12 overflow-x-auto border border-[#153B16]/15 bg-white shadow-sm">
+          <table className="w-full text-left border-collapse min-w-[960px]">
+            {/* TABLE HEADER */}
+            <thead>
+              <tr className="bg-[#153B16] text-white text-[9px] font-mono uppercase tracking-[0.2em] border-b border-[#E5CC64]">
+                <th className="py-4 px-6 font-bold w-[18%]">Origin & Regional Hub</th>
+                <th className="py-4 px-6 font-bold w-[28%]">Operating Entity & Alliance</th>
+                <th className="py-4 px-6 font-bold w-[22%]">Shared Logistics Gateway</th>
+                <th className="py-4 px-6 font-bold w-[22%]">Sourced Commodities</th>
+                <th className="py-4 px-6 font-bold text-right w-[10%]">Sourcing Contract</th>
+              </tr>
+            </thead>
+
+            {/* TABLE BODY */}
+            <tbody className="divide-y divide-[#153B16]/10 text-xs">
+              {operationsData.map((item, index) => {
+                const FlagComponent = item.flag;
+                return (
+                  <tr
+                    key={index}
+                    className="hover:bg-[#F3F3F3]/60 transition-colors group"
+                  >
+                    {/* ORIGIN & REGIONAL HUB */}
+                    <td className="py-6 px-6 align-top">
+                      <div className="flex items-center gap-2">
+                        <FlagComponent />
+                        <span className="font-[family-name:var(--font-cinzel)] font-bold text-base text-[#153B16]">
+                          {item.country}
+                        </span>
+                      </div>
+                      <div className="mt-1 flex items-center gap-1.5 text-[9px] font-mono text-[#153B16]/60">
+                        <MapPin size={11} className="text-[#E5CC64]" />
+                        <span>{item.coords}</span>
+                      </div>
+                      <span className="inline-block mt-3 bg-[#153B16]/5 text-[#153B16] text-[8px] font-mono font-bold px-2 py-0.5 border border-[#153B16]/10 uppercase tracking-widest">
+                        {item.hubId}
                       </span>
-                    ))}
+                    </td>
 
-                  </div>
+                    {/* OPERATING ENTITY & COLLABORATION BADGE */}
+                    <td className="py-6 px-6 align-top">
+                      {/* COLLABORATION BADGE */}
+                      <div className="inline-flex items-center gap-1.5 mb-2 bg-[#153B16]/5 text-[#153B16] px-2.5 py-1 border border-[#153B16]/15 text-[8px] font-mono font-bold uppercase tracking-wider">
+                        <Users size={11} className="text-[#E5CC64]" />
+                        <span>{item.collabBadge}</span>
+                      </div>
 
-                </div>
-              )}
+                      <h3 className="font-semibold text-base text-[#153B16] group-hover:text-[#E5CC64] transition-colors mt-1">
+                        {item.entity}
+                      </h3>
+                      
+                      <div className="flex items-center gap-2 mt-0.5">
+                        <span className="text-[9px] font-mono font-bold text-[#E5CC64] tracking-wider uppercase">
+                          {item.code}
+                        </span>
+                        <span className="text-[8px] text-[#153B16]/40">|</span>
+                        <span className="text-[9px] font-mono text-[#153B16]/70 italic">
+                          {item.collaborationType}
+                        </span>
+                      </div>
 
-            </article>
-          ))}
+                      <p className="text-[11px] text-black/85 mt-2.5 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </td>
 
+                    {/* SHARED LOGISTICS GATEWAY */}
+                    <td className="py-6 px-6 align-top">
+                      <div className="flex items-start gap-2 bg-[#F3F3F3] p-3 border border-[#153B16]/10">
+                        <Anchor size={13} className="text-[#E5CC64] shrink-0 mt-0.5" />
+                        <span className="text-[10px] font-mono font-bold text-[#153B16]/90 leading-tight">
+                          {item.gateway}
+                        </span>
+                      </div>
+                      <div className="mt-3 flex items-center gap-1.5 text-[9px] font-mono text-[#153B16]/70">
+                        <ShieldCheck size={13} className="text-[#E5CC64]" />
+                        <span>Direct Origin Synergy Contract</span>
+                      </div>
+                    </td>
+
+                    {/* COMMODITIES SOURCED */}
+                    <td className="py-6 px-6 align-top">
+                      <div className="flex flex-wrap gap-1.5">
+                        {item.commodities.map((prod) => (
+                          <span
+                            key={prod}
+                            className="bg-[#F3F3F3] text-[#153B16] px-2.5 py-1 border border-[#153B16]/15 text-[8px] font-bold uppercase tracking-wider"
+                          >
+                            {prod}
+                          </span>
+                        ))}
+                      </div>
+                    </td>
+
+                    {/* SOURCING CONTRACT ACTION */}
+                    <td className="py-6 px-6 align-top text-right">
+                      <Link
+                        href={`/request-offer?origin=${item.originParam}`}
+                        className="inline-flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.15em] text-[#153B16] hover:text-[#E5CC64] transition-colors whitespace-nowrap pt-1"
+                      >
+                        Inquire <ArrowRight size={11} />
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
 
-
-        {/* =====================================================
-            NETWORK POSITIONING
-        ====================================================== */}
-
-        <div className="mt-6 border border-[#153B16]/10 bg-[#153B16] px-7 py-9 sm:px-10 sm:py-10 lg:px-12">
-
-          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-
-            {/* LEFT */}
-
+        {/* BOTTOM COLLABORATIVE SYNERGY BANNER */}
+        <div className="mt-12 bg-[#153B16] px-8 py-10 sm:px-12 lg:p-10 text-white flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 border-b-2 border-[#E5CC64]">
+          <div className="flex items-start gap-4">
+            <div className="p-3 bg-white/10 rounded-none shrink-0 hidden sm:block">
+              <Handshake size={24} className="text-[#E5CC64]" />
+            </div>
             <div>
-
-              <p className="text-[8px] font-bold uppercase tracking-[0.28em] text-[#E5CC64]">
-                One Professional Network
-              </p>
-
-              <h3 className="mt-3 max-w-lg text-2xl font-semibold leading-tight text-[#F3F3F3] sm:text-3xl">
-                Two strategic sourcing markets.
+              <span className="text-[9px] font-mono font-bold uppercase tracking-[0.3em] text-[#E5CC64]">
+                Strategic Trade Synergy
+              </span>
+              <h3 className="font-[family-name:var(--font-cinzel)] mt-1.5 text-2xl font-semibold sm:text-3xl">
+                Integrated B2B Sourcing Across Africa & The Indian Ocean
               </h3>
-
             </div>
-
-
-            {/* RIGHT (Updated Dark Box Paragraphs to Pure White) */}
-
-            <div>
-
-              <p className="text-sm leading-7 text-white">
-                International buyers can inquire about suitable products from
-                Uganda or Madagascar depending on origin, availability,
-                specifications, quantity, pricing and logistics.
-              </p>
-
-              <p className="mt-4 text-sm leading-7 text-white/80">
-                Each relevant company or operation handles products according
-                to its own business activity and sourcing capability.
-              </p>
-
-            </div>
-
           </div>
-
-        </div>
-
-
-        {/* =====================================================
-            COMMERCIAL CTA
-        ====================================================== */}
-
-        <div className="mt-10 flex flex-col gap-6 border-t border-[#153B16]/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-
-          <div>
-
-            <p className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#153B16]/40">
-              International Sourcing
-            </p>
-
-            {/* Footer CTA Paragraph Updated to Black */}
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-black">
-              Tell us the product, quantity, specifications and preferred
-              origin you require, and our team can identify the appropriate
-              sourcing opportunity.
-            </p>
-
-          </div>
-
 
           <Link
-            href="#offer"
-            className="group inline-flex shrink-0 items-center gap-5 border border-[#153B16]/20 px-6 py-3.5 text-[8px] font-bold uppercase tracking-[0.2em] text-[#153B16] transition-all duration-300 hover:border-[#153B16] hover:bg-[#153B16] hover:text-[#E5CC64]"
+            href="/request-offer"
+            className="inline-flex items-center gap-3 bg-[#E5CC64] px-6 py-3.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#153B16] transition-all hover:bg-white shrink-0"
           >
-            Request A Sourcing Inquiry
-
-            <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
-
+            Inquire Strategic Alliance <ArrowRight size={13} />
           </Link>
-
         </div>
 
       </div>

@@ -14,8 +14,8 @@ export default function Home() {
       <article id="content">
         <Hero />
         <WhoWeAre />
-        <ProductCards />
         <OurGlobalOperations />
+        <ProductCards />
         <QualityAssay />
         <Compliance />
         <ForBuyers />

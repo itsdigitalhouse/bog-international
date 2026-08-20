@@ -1,309 +1,221 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Gem,
-  Mountain,
-  Layers3,
-} from "lucide-react";
+import { ArrowUpRight, ShieldCheck, CheckCircle2, ArrowRight } from "lucide-react";
 
 const products = [
   {
+    id: "gold",
     number: "01",
-    category: "Gold",
-    title: "Gold Trading & Export",
+    category: "PRECIOUS METALS",
+    title: (
+      <>
+        Gold Trading & Refining <br />
+        Coordination
+      </>
+    ),
     description:
-      "Gold sourcing, international supply, trading, export, assay and refining coordination for international B2B buyers.",
-    features: [
-      "Gold Sourcing",
-      "International Supply",
-      "Trading & Export",
-      "Assay & Refining Coordination",
+      "Bathia Ocean Gold provides end-to-end gold sourcing, assaying, and export solutions. We connect primary African gold mining hubs with sovereign funds, bullion banks, and institutional international B2B buyers.",
+    highlights: [
+      "99.99% Purity Bullion & Doré Bars",
+      "OECD & LBMA Responsible Sourcing Compliant",
+      "Secure International Vaulting & Air Logistics",
+      "Independent Assay Certification (SGS / Alex Stewart)",
     ],
+    image: "/assets/gold-trading.jpeg",
     href: "/products/gold",
-    icon: Gem,
   },
   {
+    id: "copper",
     number: "02",
-    category: "Copper",
-    title: "Copper & Copper Cathodes",
+    category: "BASE METALS",
+    title: (
+      <>
+        Copper & High-Grade <br />
+        Copper Cathodes
+      </>
+    ),
     description:
-      "Copper and Copper Cathodes for international B2B supply, trading and export across global markets.",
-    features: [
-      "Copper Cathodes",
-      "B2B Supply",
-      "International Trading",
-      "Export Coordination",
+      "Direct trade execution and export management for high-purity Grade-A Copper Cathodes and industrial copper concentrates essential for global electronics and power infrastructure.",
+    highlights: [
+      "Electrolytic Copper Cathodes (Grade A, 99.99%)",
+      "Bulk Vessel & Container Export Capabilities",
+      "Direct Mine-Site Offtake Agreements",
+      "Full CIF / FOB Supply Terms Available",
     ],
+    image: "/assets/copper-cathodes.jpeg",
     href: "/products/copper",
-    icon: Mountain,
   },
   {
+    id: "minerals",
     number: "03",
-    category: "Minerals",
-    title: "Other Minerals & Commodities",
+    category: "INDUSTRIAL COMMODITIES",
+    title: (
+      <>
+        Other Strategic Minerals <br />
+        & Agro-Mining
+      </>
+    ),
     description:
-      "African-origin minerals and commodities supplied through structured international sourcing and B2B distribution.",
-    features: [
-      "African-Origin Resources",
-      "Commodity Sourcing",
-      "International B2B",
-      "Expandable Portfolio",
+      "Structured supply chains for raw industrial minerals, rare earth elements, and select agro-commodities sourced directly from verified African partners.",
+    highlights: [
+      "Lithium, Coltan, & Strategic Mineral Ores",
+      "Traceable Supply Chain Integrity",
+      "Custom Contractual Procurement & Sourcing",
+      "End-to-End Export Logistics Coordination",
     ],
+    image: "/assets/other-strategic-minerals.jpeg",
     href: "/products/minerals",
-    icon: Layers3,
   },
 ];
 
 export default function ProductCards() {
-  return (
-    <section
-      id="products"
-      className="relative overflow-hidden bg-[#153B16] text-[#F3F3F3]"
-    >
-      {/* =========================================================
-          SUBTLE BACKGROUND
-      ========================================================== */}
+  const [activeTab, setActiveTab] = useState(0);
+  const current = products[activeTab];
 
+  return (
+    <section id="products" className="relative bg-[#F9F9F9] text-[#153B16] py-20 lg:py-28 overflow-hidden selection:bg-[#E5CC64] selection:text-[#153B16]">
+      
+      {/* Background Grid Pattern */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.035]"
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `
-            linear-gradient(#E5CC64 1px, transparent 1px),
-            linear-gradient(90deg, #E5CC64 1px, transparent 1px)
+            linear-gradient(#153B16 1px, transparent 1px),
+            linear-gradient(90deg, #153B16 1px, transparent 1px)
           `,
-          backgroundSize: "80px 80px",
+          backgroundSize: "60px 60px",
         }}
       />
 
-      <div className="pointer-events-none absolute -right-40 top-0 h-[450px] w-[450px] rounded-full bg-[#E5CC64]/10 blur-[130px]" />
-
-
-      {/* =========================================================
-          MAIN CONTAINER
-      ========================================================== */}
-
-      <div className="relative z-10 mx-auto max-w-[1600px] px-5 py-20 sm:px-8 sm:py-24 lg:px-14 lg:py-28 xl:px-20">
-
-
-        {/* =======================================================
-            SECTION HEADER
-        ======================================================== */}
-
-        <div className="mb-12 border-b border-[#E5CC64]/20 pb-6 sm:mb-16">
-
-          <div className="flex items-center justify-between">
-
-            <div className="flex items-center gap-4">
-
-              <span className="h-px w-10 bg-[#E5CC64] sm:w-14" />
-
-              <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#E5CC64] sm:text-[10px]">
+      <div className="relative z-10 max-w-[1600px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-20">
+        
+        {/* HEADER */}
+        <div className="mb-12 border-b border-[#153B16]/15 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <div className="flex items-center gap-4 mb-3">
+              <span className="h-px w-10 bg-[#E5CC64]" />
+              <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#153B16]/70">
                 Core Portfolio
               </span>
+            </div>
+            <h2 className="font-[family-name:var(--font-cinzel)] text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#153B16]">
+              Products & <span className="text-[#E5CC64]">Commodities</span>
+            </h2>
+          </div>
 
+          {/* TAB SWITCHER */}
+          <div className="flex flex-wrap gap-2 bg-white p-1.5 border border-[#153B16]/15 shadow-sm">
+            {products.map((item, idx) => (
+              <button
+                key={item.id}
+                onClick={() => setActiveTab(idx)}
+                className={`px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-wider transition-all duration-300 ${
+                  activeTab === idx
+                    ? "bg-[#153B16] text-[#E5CC64]"
+                    : "text-[#153B16]/70 hover:text-[#153B16] hover:bg-[#153B16]/5"
+                }`}
+              >
+                {item.number}. {item.id}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* CONTENT & IMAGE SPLIT */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          
+          {/* LEFT: CONTENT AREA */}
+          <div className="lg:col-span-7 space-y-6">
+            
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-xs text-[#153B16] font-bold border border-[#153B16]/20 bg-white px-2 py-0.5">
+                {current.number}
+              </span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#E5CC64]">
+                {current.category}
+              </span>
             </div>
 
-            <span className="hidden font-mono text-[8px] uppercase tracking-[0.3em] text-white/50 sm:block">
-              BOG / 03
-            </span>
-
-          </div>
-
-
-          <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_0.65fr] lg:items-end">
-
-            <h2 className="max-w-3xl font-[family-name:var(--font-cinzel)] text-[36px] font-semibold leading-[1.08] tracking-[-0.02em] text-white sm:text-[44px] md:text-[48px] lg:text-[52px]">
-              Our Products
-              <br />
-              <span className="text-[#E5CC64]">
-                & Commodities
-              </span>
-            </h2>
-
-            {/* Paragraph Text Updated to Pure White */}
-            <p className="max-w-xl text-sm leading-7 text-white lg:pb-1 lg:text-right">
-              Connecting African-origin resources with international B2B
-              demand through structured sourcing, trading and export.
-            </p>
-
-          </div>
-
-        </div>
-
-
-        {/* =======================================================
-            PRODUCT LIST
-        ======================================================== */}
-
-        <div className="border-t border-[#E5CC64]/20">
-
-          {products.map((product) => {
-            const Icon = product.icon;
-
-            return (
-              <article
-                key={product.number}
-                className="group grid border-b border-[#E5CC64]/20 py-8 transition-colors duration-300 hover:bg-[#E5CC64]/[0.035] sm:py-10 lg:grid-cols-[90px_1fr_1.1fr_190px] lg:items-center lg:gap-8"
-              >
-
-                {/* =================================================
-                    NUMBER
-                ================================================== */}
-
-                <div className="mb-5 lg:mb-0">
-
-                  <span className="font-mono text-[10px] tracking-[0.2em] text-[#E5CC64]/70">
-                    {product.number}
-                  </span>
-
-                </div>
-
-
-                {/* =================================================
-                    TITLE
-                ================================================== */}
-
-                <div className="flex items-start gap-4">
-
-                  <div className="hidden h-10 w-10 shrink-0 items-center justify-center border border-[#E5CC64]/25 text-[#E5CC64] sm:flex">
-
-                    <Icon
-                      size={17}
-                      strokeWidth={1.4}
-                    />
-
-                  </div>
-
-                  <div>
-
-                    <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#E5CC64]">
-                      {product.category}
-                    </span>
-
-                    <h3 className="mt-2 max-w-md font-[family-name:var(--font-cinzel)] text-xl font-medium leading-tight text-white transition-colors duration-300 group-hover:text-[#E5CC64] sm:text-2xl">
-                      {product.title}
-                    </h3>
-
-                  </div>
-
-                </div>
-
-
-                {/* =================================================
-                    DESCRIPTION + FEATURES
-                ================================================== */}
-
-                <div className="mt-5 lg:mt-0">
-
-                  {/* Paragraph Text Updated to Pure White */}
-                  <p className="max-w-xl text-sm leading-6 text-white">
-                    {product.description}
-                  </p>
-
-                  <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
-
-                    {product.features.map((feature) => (
-                      <span
-                        key={feature}
-                        className="flex items-center gap-2 text-[8px] font-bold uppercase tracking-[0.14em] text-white/80"
-                      >
-                        <span className="h-1 w-1 rounded-full bg-[#E5CC64]" />
-                        {feature}
-                      </span>
-                    ))}
-
-                  </div>
-
-                </div>
-
-
-                {/* =================================================
-                    LINK
-                ================================================== */}
-
-                <div className="mt-6 lg:mt-0 lg:text-right">
-
-                  <Link
-                    href={product.href}
-                    className="group/link inline-flex items-center gap-3 border-b border-[#E5CC64]/40 pb-2 text-[9px] font-bold uppercase tracking-[0.2em] text-[#E5CC64] transition-all duration-300 hover:border-[#E5CC64]"
-                  >
-                    Explore
-
-                    <ArrowRight
-                      size={13}
-                      className="transition-transform duration-300 group-hover/link:translate-x-1"
-                    />
-
-                  </Link>
-
-                </div>
-
-              </article>
-            );
-          })}
-
-        </div>
-
-
-        {/* =======================================================
-            COMMERCIAL CTA
-        ======================================================== */}
-
-        <div className="mt-12 flex flex-col gap-5 border border-[#E5CC64]/20 bg-[#F3F3F3]/[0.025] p-6 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
-
-          <div>
-
-            <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#E5CC64]">
-              International Buyers
-            </span>
-
-            <h3 className="mt-2 font-[family-name:var(--font-cinzel)] text-xl text-white sm:text-2xl">
-              Have a specific commodity requirement?
+            <h3 className="font-[family-name:var(--font-cinzel)] text-2xl sm:text-3xl lg:text-4xl font-medium text-[#153B16] leading-tight">
+              {current.title}
             </h3>
 
+            <p className="text-sm sm:text-base leading-relaxed text-[#153B16]/85">
+              {current.description}
+            </p>
+
+            {/* CONTENT BULLETS / HIGHLIGHTS */}
+            <div className="pt-4 border-t border-[#153B16]/15">
+              <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#153B16]/60 block mb-4">
+                Key Operational Specifications
+              </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {current.highlights.map((point, i) => (
+                  <div key={i} className="flex items-start gap-2.5">
+                    <CheckCircle2 size={16} className="text-[#153B16] shrink-0 mt-0.5" />
+                    <span className="text-xs font-medium text-[#153B16]/90 leading-snug">
+                      {point}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ACTION BUTTONS */}
+            <div className="pt-6 flex flex-wrap items-center gap-4">
+              <Link
+                href={current.href}
+                className="group inline-flex items-center gap-3 bg-[#153B16] px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#F3F3F3] transition-all duration-300 hover:bg-[#E5CC64] hover:text-[#153B16]"
+              >
+                View Commodity Specs
+                <ArrowUpRight size={14} className="text-[#E5CC64] transition-colors group-hover:text-[#153B16]" />
+              </Link>
+
+              <Link
+                href="/request-offer"
+                className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#153B16] hover:text-[#E5CC64] border-b border-[#153B16]/30 pb-1.5 transition-colors"
+              >
+                Request Offtake Contract
+                <ArrowRight size={13} />
+              </Link>
+            </div>
+
           </div>
 
+          {/* RIGHT: FEATURED IMAGE FRAME */}
+          <div className="lg:col-span-5 relative">
+            <div className="relative aspect-[4/5] w-full overflow-hidden border border-[#153B16]/20 shadow-xl bg-white">
+              <img
+                src={current.image}
+                alt="Commodity Visual"
+                className="w-full h-full object-cover transition-all duration-700 hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#153B16]/80 via-transparent to-transparent opacity-80" />
+              
+              {/* Image Footer Badge */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 flex justify-between items-end">
+                <div>
+                  <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-[#E5CC64] block">
+                    Verified Origin
+                  </span>
+                  <span className="font-[family-name:var(--font-cinzel)] text-lg text-white">
+                    East Africa Supply
+                  </span>
+                </div>
+                <ShieldCheck size={24} className="text-[#E5CC64]" />
+              </div>
+            </div>
 
-          <Link
-            href="/request-offer"
-            className="group inline-flex w-fit items-center gap-3 bg-[#E5CC64] px-6 py-3.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#153B16] transition-all duration-300 hover:bg-[#F3F3F3]"
-          >
-            Request a Commercial Offer
-
-            <ArrowUpRight
-              size={14}
-              className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-            />
-
-          </Link>
-
-        </div>
-
-
-        {/* =======================================================
-            BOTTOM NOTE
-        ======================================================== */}
-
-        <div className="mt-6 flex items-center justify-between">
-
-          <span className="text-[8px] uppercase tracking-[0.2em] text-white/60">
-            African Origin • International Markets
-          </span>
-
-          <span className="font-mono text-[8px] tracking-[0.2em] text-[#E5CC64]/50">
-            03 / 06
-          </span>
+            {/* Accent Borders */}
+            <div className="absolute -bottom-3 -right-3 h-16 w-16 border-b-2 border-r-2 border-[#E5CC64] pointer-events-none" />
+            <div className="absolute -top-3 -left-3 h-16 w-16 border-t-2 border-l-2 border-[#153B16]/30 pointer-events-none" />
+          </div>
 
         </div>
 
       </div>
-
-
-      {/* Bottom accent */}
-
-      <div className="absolute bottom-0 left-0 h-px w-full bg-[#E5CC64]/50" />
-
     </section>
   );
 }
